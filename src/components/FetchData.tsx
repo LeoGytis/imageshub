@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-interface Photo {
+interface PhotoProps {
 	id: string;
 	farm: number;
 	server: string;
 	secret: string;
 	title: string;
+	ownerId: string;
 }
 
 const FetchData: React.FC = (): JSX.Element => {
-	const [photos, setPhotos] = useState<Photo[] | null>(null);
+	const [photos, setPhotos] = useState<PhotoProps[] | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	const apiKey = "a38a46fe5bac997c4fdde47d6b7ed5bf";
@@ -21,7 +22,7 @@ const FetchData: React.FC = (): JSX.Element => {
 		const fetchData = async (): Promise<void> => {
 			try {
 				const response = await fetch(
-					`https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${apiKey}&gallery_id=${galleryId}&format=json&nojsoncallback=1`
+					`https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${apiKey}&gallery_id=${galleryId}&format=json&nojsoncallback=1&owner_name&extras=owner_name`
 				);
 				const responseData = await response.json();
 				if (responseData && responseData.photos && responseData.photos.photo) {
@@ -40,14 +41,14 @@ const FetchData: React.FC = (): JSX.Element => {
 	console.log("🚀 :: photos ::", photos);
 
 	return (
-		<div>
+		<>
 			{isLoading ? (
 				<p>Loading...</p>
 			) : (
 				<div className="gallery_wrapper">
 					{photos &&
-						photos.map((photo) => (
-							<div className="photo_container">
+						photos.map((photo, i) => (
+							<div className="photo_container" key={i}>
 								<img
 									key={photo.id}
 									alt={photo.title}
@@ -57,7 +58,7 @@ const FetchData: React.FC = (): JSX.Element => {
 						))}
 				</div>
 			)}
-		</div>
+		</>
 	);
 };
 
