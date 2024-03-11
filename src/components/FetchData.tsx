@@ -12,6 +12,7 @@ interface PhotoProps {
 const FetchData: React.FC = (): JSX.Element => {
 	const [photos, setPhotos] = useState<PhotoProps[] | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
 	const apiKey = "a38a46fe5bac997c4fdde47d6b7ed5bf";
 	const userId = "4e99becb24e6b830";
@@ -22,7 +23,7 @@ const FetchData: React.FC = (): JSX.Element => {
 		const fetchData = async (): Promise<void> => {
 			try {
 				const response = await fetch(
-					`https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${apiKey}&gallery_id=${galleryId}&format=json&nojsoncallback=1&owner_name&extras=owner_name`
+					`https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${apiKey}&gallery_id=${galleryId}&format=json&nojsoncallback=1&extras=owner_name`
 				);
 				const responseData = await response.json();
 				if (responseData && responseData.photos && responseData.photos.photo) {
@@ -39,6 +40,20 @@ const FetchData: React.FC = (): JSX.Element => {
 	}, []);
 
 	console.log("🚀 :: photos ::", photos);
+
+	useEffect(() => {
+		const storedFavorites = localStorage.getItem("favorites");
+		if (storedFavorites) {
+			setFavorites(JSON.parse(storedFavorites));
+		}
+	}, []);
+
+	const toggleFavorite = (photoId: string): void => {
+		setFavorites((prevFavorites) => ({
+			...prevFavorites,
+			[photoId]: !prevFavorites[photoId],
+		}));
+	};
 
 	return (
 		<>
@@ -57,7 +72,9 @@ const FetchData: React.FC = (): JSX.Element => {
 								<div className="overlay">
 									<h3>{photo.title}</h3>
 									<p>{photo.ownername}</p>
-									<button>Favorite</button>
+									<button onClick={() => toggleFavorite(photo.id)}>
+										{favorites[photo.id] ? "Unfavorite" : "Favorite"}
+									</button>
 								</div>
 							</div>
 						))}
