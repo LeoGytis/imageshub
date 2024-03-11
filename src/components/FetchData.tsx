@@ -5,6 +5,7 @@ interface Photo {
 	farm: number;
 	server: string;
 	secret: string;
+	title: string;
 }
 
 const FetchData: React.FC = (): JSX.Element => {
@@ -36,6 +37,8 @@ const FetchData: React.FC = (): JSX.Element => {
 		fetchData();
 	}, []);
 
+	console.log("🚀 :: photos ::", photos);
+
 	return (
 		<div>
 			<h1>FETCH DATA COMPONENT</h1>
@@ -47,7 +50,7 @@ const FetchData: React.FC = (): JSX.Element => {
 						photos.map((photo) => (
 							<img
 								key={photo.id}
-								alt="dogs"
+								alt={photo.title}
 								src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
 							/>
 						))}
