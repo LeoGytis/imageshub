@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 
 interface Photo {
@@ -45,7 +46,7 @@ const FetchData: React.FC = (): JSX.Element => {
 			{isLoading ? (
 				<p>Loading...</p>
 			) : (
-				<div>
+				<div className="photo_container">
 					{photos &&
 						photos.map((photo) => (
 							<img
@@ -61,3 +62,11 @@ const FetchData: React.FC = (): JSX.Element => {
 };
 
 export default FetchData;
+
+const Container = styled.div`
+	max-width: 1270px;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;

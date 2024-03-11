@@ -1,16 +1,11 @@
-import "./App.css";
+import "./global.css";
 import FetchData from "./components/FetchData";
 
 function App() {
 	return (
-		<>
-			<header></header>
-			<main>
-				<div>
-					<FetchData />
-				</div>
-			</main>
-		</>
+		<div className="gallery_wrapper">
+			<FetchData />
+		</div>
 	);
 }
 
