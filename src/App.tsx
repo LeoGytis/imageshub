@@ -3,7 +3,7 @@ import FetchData from "./components/FetchData";
 
 function App() {
 	return (
-		<div className="gallery_wrapper">
+		<div className="">
 			<FetchData />
 		</div>
 	);

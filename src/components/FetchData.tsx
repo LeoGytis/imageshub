@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 
 interface Photo {
@@ -42,18 +41,19 @@ const FetchData: React.FC = (): JSX.Element => {
 
 	return (
 		<div>
-			<h1>FETCH DATA COMPONENT</h1>
 			{isLoading ? (
 				<p>Loading...</p>
 			) : (
-				<div className="photo_container">
+				<div className="gallery_wrapper">
 					{photos &&
 						photos.map((photo) => (
-							<img
-								key={photo.id}
-								alt={photo.title}
-								src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
-							/>
+							<div className="photo_container">
+								<img
+									key={photo.id}
+									alt={photo.title}
+									src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+								/>
+							</div>
 						))}
 				</div>
 			)}
@@ -62,11 +62,3 @@ const FetchData: React.FC = (): JSX.Element => {
 };
 
 export default FetchData;
-
-const Container = styled.div`
-	max-width: 1270px;
-	margin: auto;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`;
