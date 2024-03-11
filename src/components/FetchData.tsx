@@ -6,7 +6,7 @@ interface PhotoProps {
 	server: string;
 	secret: string;
 	title: string;
-	ownerId: string;
+	ownername: string;
 }
 
 const FetchData: React.FC = (): JSX.Element => {
@@ -54,6 +54,11 @@ const FetchData: React.FC = (): JSX.Element => {
 									alt={photo.title}
 									src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
 								/>
+								<div className="overlay">
+									<h3>{photo.title}</h3>
+									<p>{photo.ownername}</p>
+									<button>Favorite</button>
+								</div>
 							</div>
 						))}
 				</div>
