@@ -20,7 +20,7 @@ const FetchData: React.FC = (): JSX.Element => {
 				// 	`https://www.flickr.com/services/rest/?method=flickr.test.echo&api_key=${apiKey}&gallery_id=${galleryId}&format=json`
 				// );
 				const response = await fetch(
-					`https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=a38a46fe5bac997c4fdde47d6b7ed5bf&gallery_id=66911286-72157647277042064&format=json&nojsoncallback=1`
+					`https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${apiKey}&gallery_id=${galleryId}&format=json&nojsoncallback=1`
 				);
 				const responseData: Item[] = await response.json();
 				setData(responseData);
@@ -37,22 +37,7 @@ const FetchData: React.FC = (): JSX.Element => {
 
 	return (
 		<div>
-			<h1>API Data</h1>
-			{/* {isLoading ? (
-				<p>Loading...</p>
-			) : (
-				<div>
-					{data ? (
-						<ul>
-							{data.map((item: Item, index: number) => (
-								<li key={index}>{item.name}</li>
-							))}
-						</ul>
-					) : (
-						<p>No data available</p>
-					)}
-				</div>
-			)} */}
+			<h1>FETCH DATA COMPONENT</h1>
 		</div>
 	);
 };
