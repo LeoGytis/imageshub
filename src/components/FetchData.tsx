@@ -1,36 +1,37 @@
 import React, { useState, useEffect } from "react";
 
-interface Item {
-	name: string;
-	mathod?: string;
-	// galleryId?: string;
+interface Photo {
+	id: string;
+	farm: number;
+	server: string;
+	secret: string;
 }
 
 const FetchData: React.FC = (): JSX.Element => {
-	const [data, setData] = useState<Item[] | null>(null);
+	const [photos, setPhotos] = useState<Photo[] | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
+
 	const apiKey = "a38a46fe5bac997c4fdde47d6b7ed5bf";
 	const userId = "4e99becb24e6b830";
-	const galleryId = "66911286-72157647277042064";
+	// const galleryId = "195820781-72157721014962461"; // big macro gallery
+	const galleryId = "91216181-72157638326919233";
 
 	useEffect(() => {
 		const fetchData = async (): Promise<void> => {
 			try {
-				// const response = await fetch(
-				// 	`https://www.flickr.com/services/rest/?method=flickr.test.echo&api_key=${apiKey}&gallery_id=${galleryId}&format=json`
-				// );
 				const response = await fetch(
 					`https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${apiKey}&gallery_id=${galleryId}&format=json&nojsoncallback=1`
 				);
-				const responseData: Item[] = await response.json();
-				setData(responseData);
+				const responseData = await response.json();
+				if (responseData && responseData.photos && responseData.photos.photo) {
+					setPhotos(responseData.photos.photo);
+				}
 				setIsLoading(false);
 			} catch (error) {
 				console.error("Error fetching data:", error);
 				setIsLoading(false);
 			}
 		};
-		console.log("🚀 :: fetchData :: setData ::", data);
 
 		fetchData();
 	}, []);
@@ -38,6 +39,20 @@ const FetchData: React.FC = (): JSX.Element => {
 	return (
 		<div>
 			<h1>FETCH DATA COMPONENT</h1>
+			{isLoading ? (
+				<p>Loading...</p>
+			) : (
+				<div>
+					{photos &&
+						photos.map((photo) => (
+							<img
+								key={photo.id}
+								alt="dogs"
+								src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+							/>
+						))}
+				</div>
+			)}
 		</div>
 	);
 };
