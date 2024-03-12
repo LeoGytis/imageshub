@@ -65,11 +65,10 @@ const FetchData: React.FC = (): JSX.Element => {
 
 	return (
 		<>
-			<div className="gallery_wrapper">
-				{photos.map((photo, i) => (
-					<div className="photo_container" key={i}>
+			<div className="gallery_container">
+				{photos.map((photo) => (
+					<div className="photo_container" key={photo.id}>
 						<img
-							key={photo.id}
 							alt={photo.title}
 							src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
 						/>
