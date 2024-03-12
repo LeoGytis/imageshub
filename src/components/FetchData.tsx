@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LoaderComponent from "./LoaderComponent";
+import FavoriteComponent from "./FavoriteComponent";
 
 interface PhotoProps {
 	id: string;
@@ -79,6 +80,7 @@ const FetchData: React.FC = (): JSX.Element => {
 								{favorites[photo.id] ? "Unfavorite" : "Favorite"}
 							</button>
 						</div>
+						<FavoriteComponent />
 					</div>
 				))}
 				{isLoading && <LoaderComponent />}
