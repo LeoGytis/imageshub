@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import LoaderComponent from "./LoaderComponent";
 import FavoriteComponent from "./FavoriteComponent";
 
@@ -11,43 +11,37 @@ interface PhotoProps {
 	ownername: string;
 }
 
-const FetchData: React.FC = (): JSX.Element => {
+const FetchData = () => {
 	const [photos, setPhotos] = useState<PhotoProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [page, setPage] = useState<number>(1);
 
-	useEffect(() => {
-		const storedFavorites = localStorage.getItem("favorites");
-		if (storedFavorites) {
-			setFavorites(JSON.parse(storedFavorites));
-		}
-	}, []);
-
-	const initialFavorites = localStorage.getItem("favorites") ? JSON.parse(localStorage.getItem("favorites")!) : {};
-	const [favorites, setFavorites] = useState<Record<string, boolean>>(initialFavorites);
-
-	const apiKey = "164c38fb43c193481ea2a3dfc30b4180"; //public api key
-	// --- big macro gallery ---
-	// const galleryId = "195820781-72157721014962461";
-	// --- test small gallery ---
-	const galleryId = "91216181-72157638326919233";
+	const apiKey = "164c38fb43c193481ea2a3dfc30b4180";
+	// const galleryId = "91216181-72157638326919233";
+	const galleryId = "195820781-72157721014962461";
+	const perPage = 12; // Number of items per page
+	const apiUrl = `https://www.flickr.com/services/rest/?\
+	&method=flickr.galleries.getPhotos\
+	&api_key=${apiKey}\
+	&gallery_id=${galleryId}\
+	&format=json\
+	&nojsoncallback=1\
+	&extras=owner_name\
+	&page=${page}\
+	&per_page=${perPage}`;
 
 	useEffect(() => {
 		fetchPhotos();
-	}, []);
+	}, [page]);
 
-	useEffect(() => {
-		localStorage.setItem("favorites", JSON.stringify(favorites));
-	}, [favorites]);
-
+	// Function to fetch photos from the API
 	const fetchPhotos = async (): Promise<void> => {
 		setIsLoading(true);
 		try {
-			const response = await fetch(
-				`https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${apiKey}&gallery_id=${galleryId}&format=json&nojsoncallback=1&extras=owner_name`
-			);
+			const response = await fetch(apiUrl);
 			const responseData = await response.json();
 			if (responseData && responseData.photos && responseData.photos.photo) {
-				setPhotos(responseData.photos.photo);
+				setPhotos((prevPhotos) => [...prevPhotos, ...responseData.photos.photo]);
 			}
 		} catch (error) {
 			console.error("Error fetching data:", error);
@@ -56,12 +50,25 @@ const FetchData: React.FC = (): JSX.Element => {
 		}
 	};
 
-	const toggleFavorite = (photoId: string): void => {
-		setFavorites((prevFavorites) => ({
-			...prevFavorites,
-			[photoId]: !prevFavorites[photoId],
-		}));
-	};
+	// Function to handle scroll events
+	const handleScroll = useCallback(() => {
+		const windowHeight = window.innerHeight;
+		const documentHeight = document.documentElement.scrollHeight;
+		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		const scrolledToBottom = Math.ceil(scrollTop + windowHeight) >= documentHeight;
+
+		if (scrolledToBottom && !isLoading) {
+			setPage((prevPage) => prevPage + 1);
+		}
+	}, [isLoading]);
+
+	// Add scroll event listener
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, [handleScroll]);
 
 	return (
 		<>
@@ -77,11 +84,8 @@ const FetchData: React.FC = (): JSX.Element => {
 								<h3>{photo.title}</h3>
 								<p>{photo.ownername}</p>
 							</div>
-							<button onClick={() => toggleFavorite(photo.id)}>
-								{favorites[photo.id] ? "Unfavorite" : "Favorite"}
-							</button>
+							<button>favooorite</button>
 						</div>
-						{favorites[photo.id] ? <FavoriteComponent /> : "Favorite"}
 					</div>
 				))}
 				{isLoading && <LoaderComponent />}
