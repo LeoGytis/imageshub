@@ -1,6 +1,6 @@
-const FavoriteComponent = ({ color, onClick }: { color: string; onClick?: () => void }) => {
+const FavoriteComponent = ({ color }: { color: string }) => {
 	return (
-		<div onClick={onClick} className="favorite_heart">
+		<div className="favorite_heart">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				height="20px"

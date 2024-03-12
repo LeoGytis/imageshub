@@ -33,7 +33,7 @@ const FetchData = () => {
 	// const galleryId = "91216181-72157638326919233";
 	const galleryId = "195820781-72157721014962461";
 	const perPage = () => {
-		return isMobile() ? 3 : isTablet() ? 6 : 9; // Number of photos per page
+		return isMobile() ? 6 : isTablet() ? 9 : 12; // Number of photos per page
 	};
 	const apiUrl = `https://www.flickr.com/services/rest/?\
 	&method=flickr.galleries.getPhotos\
@@ -148,16 +148,15 @@ const FetchData = () => {
 						{isDesktop() ? (
 							<>
 								<button onClick={() => toggleFavorite(photo.id)} className="favorite_button">
-									{favorites[photo.id] ? "Unfavorite" : "Favorite"}
+									{favorites[photo.id] ? "Unfavourite" : "Favourite"}
 								</button>
-								{favorites[photo.id] ? <FavoriteComponent color={"#ff0000"} /> : null}
 							</>
 						) : (
-							<FavoriteComponent
-								onClick={() => toggleFavorite(photo.id)}
-								color={favorites[photo.id] ? "#ffffff" : "#ff0000"}
-							/>
+							<button onClick={() => toggleFavorite(photo.id)} className="favorite_button">
+								CLICK
+							</button>
 						)}
+						{favorites[photo.id] ? <FavoriteComponent color={"#ffffff"} /> : null}
 					</div>
 				))}
 				{isLoading && <LoaderComponent />}
