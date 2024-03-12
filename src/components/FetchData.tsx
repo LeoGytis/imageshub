@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import LoaderComponent from "./LoaderComponent";
 import FavoriteComponent from "./FavoriteComponent";
 import ScreenSizeHelper from "./ScreenSizeHelper";
@@ -17,6 +17,7 @@ const FetchData = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [page, setPage] = useState<number>(1);
 	const { isMobile, isTablet, isDesktop } = ScreenSizeHelper();
+	const lastPhotoRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const storedFavorites = localStorage.getItem("favorites");
@@ -46,6 +47,10 @@ const FetchData = () => {
 
 	useEffect(() => {
 		fetchPhotos();
+	}, []);
+
+	useEffect(() => {
+		fetchPhotos();
 	}, [page]);
 
 	useEffect(() => {
@@ -72,6 +77,27 @@ const FetchData = () => {
 			setIsLoading(false);
 		}
 	};
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (entries[0].isIntersecting && !isLoading) {
+					setPage((prevPage) => prevPage + 1);
+				}
+			},
+			{ threshold: 1 }
+		);
+
+		if (lastPhotoRef.current) {
+			observer.observe(lastPhotoRef.current);
+		}
+
+		return () => {
+			if (lastPhotoRef.current) {
+				observer.unobserve(lastPhotoRef.current);
+			}
+		};
+	}, [isLoading]);
 
 	// Function to handle scroll events
 	const handleScroll = useCallback(() => {
@@ -103,8 +129,12 @@ const FetchData = () => {
 	return (
 		<>
 			<div className="gallery_container">
-				{photos.map((photo) => (
-					<div className="photo_container" key={photo.id}>
+				{photos.map((photo, index) => (
+					<div
+						className="photo_container"
+						key={photo.id}
+						ref={index === photos.length - 1 ? lastPhotoRef : undefined}
+					>
 						<img
 							alt={photo.title}
 							src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
