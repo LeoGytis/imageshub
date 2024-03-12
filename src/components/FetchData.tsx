@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import LoaderComponent from "./LoaderComponent";
 import FavoriteComponent from "./FavoriteComponent";
+import ScreenSizeHelper from "./ScreenSizeHelper";
 
 interface PhotoProps {
 	id: string;
@@ -15,11 +16,14 @@ const FetchData = () => {
 	const [photos, setPhotos] = useState<PhotoProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [page, setPage] = useState<number>(1);
+	const { isMobile, isTablet, isDesktop } = ScreenSizeHelper();
 
 	const apiKey = "164c38fb43c193481ea2a3dfc30b4180";
 	// const galleryId = "91216181-72157638326919233";
 	const galleryId = "195820781-72157721014962461";
-	const perPage = 9; // Number of items per page
+	const perPage = () => {
+		return isMobile() ? 3 : isTablet() ? 6 : 9; // Number of photos per page
+	};
 	const apiUrl = `https://www.flickr.com/services/rest/?\
 	&method=flickr.galleries.getPhotos\
 	&api_key=${apiKey}\
@@ -28,7 +32,7 @@ const FetchData = () => {
 	&nojsoncallback=1\
 	&extras=owner_name\
 	&page=${page}\
-	&per_page=${perPage}`;
+	&per_page=${perPage()}`;
 
 	useEffect(() => {
 		fetchPhotos();
