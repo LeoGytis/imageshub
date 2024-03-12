@@ -142,20 +142,13 @@ const FetchData = () => {
 						<div className="overlay">
 							<div>
 								<h3>{photo.title}</h3>
-								<p>{photo.ownername}</p>
-							</div>
-						</div>
-						{isDesktop() ? (
-							<>
-								<button onClick={() => toggleFavorite(photo.id)} className="favorite_button">
+								<p>{photo.ownername}</p>{" "}
+								<button onClick={() => toggleFavorite(photo.id)} className="favourite_button">
 									{favorites[photo.id] ? "Unfavourite" : "Favourite"}
 								</button>
-							</>
-						) : (
-							<button onClick={() => toggleFavorite(photo.id)} className="favorite_button">
-								CLICK
-							</button>
-						)}
+							</div>
+						</div>
+
 						{favorites[photo.id] ? <FavoriteComponent color={"#ffffff"} /> : null}
 					</div>
 				))}
