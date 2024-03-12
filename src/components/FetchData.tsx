@@ -73,13 +73,15 @@ const FetchData: React.FC = (): JSX.Element => {
 							src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
 						/>
 						<div className="overlay">
-							<h3>{photo.title}</h3>
-							<p>{photo.ownername}</p>
+							<div>
+								<h3>{photo.title}</h3>
+								<p>{photo.ownername}</p>
+							</div>
 							<button onClick={() => toggleFavorite(photo.id)}>
 								{favorites[photo.id] ? "Unfavorite" : "Favorite"}
 							</button>
 						</div>
-						<FavoriteComponent />
+						{favorites[photo.id] ? <FavoriteComponent /> : "Favorite"}
 					</div>
 				))}
 				{isLoading && <LoaderComponent />}
