@@ -19,7 +19,7 @@ const FetchData = () => {
 	const apiKey = "164c38fb43c193481ea2a3dfc30b4180";
 	// const galleryId = "91216181-72157638326919233";
 	const galleryId = "195820781-72157721014962461";
-	const perPage = 12; // Number of items per page
+	const perPage = 9; // Number of items per page
 	const apiUrl = `https://www.flickr.com/services/rest/?\
 	&method=flickr.galleries.getPhotos\
 	&api_key=${apiKey}\
@@ -41,7 +41,12 @@ const FetchData = () => {
 			const response = await fetch(apiUrl);
 			const responseData = await response.json();
 			if (responseData && responseData.photos && responseData.photos.photo) {
-				setPhotos((prevPhotos) => [...prevPhotos, ...responseData.photos.photo]);
+				// Prevent duplication of photos on the initial page load
+				if (page === 1) {
+					setPhotos(responseData.photos.photo);
+				} else {
+					setPhotos((prevPhotos) => [...prevPhotos, ...responseData.photos.photo]);
+				}
 			}
 		} catch (error) {
 			console.error("Error fetching data:", error);
@@ -62,7 +67,7 @@ const FetchData = () => {
 		}
 	}, [isLoading]);
 
-	// Add scroll event listener
+	// Scroll event listener
 	useEffect(() => {
 		window.addEventListener("scroll", handleScroll);
 		return () => {
