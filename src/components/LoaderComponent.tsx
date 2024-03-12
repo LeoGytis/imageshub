@@ -20,7 +20,7 @@ const LoaderComponent = ({ color = "#007782" }) => {
 						type="rotate"
 						from="0 25 25"
 						to="360 25 25"
-						dur="0.6s"
+						dur="0.8s"
 						repeatCount="indefinite"
 					/>
 				</path>
