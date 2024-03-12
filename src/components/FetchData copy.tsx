@@ -81,7 +81,7 @@ const FetchData: React.FC = (): JSX.Element => {
 								{favorites[photo.id] ? "Unfavorite" : "Favorite"}
 							</button>
 						</div>
-						{favorites[photo.id] ? <FavoriteComponent /> : "Favorite"}
+						{/* {favorites[photo.id] ? <FavoriteComponent /> : "Favorite"} */}
 					</div>
 				))}
 				{isLoading && <LoaderComponent />}

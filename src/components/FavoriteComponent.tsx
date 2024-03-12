@@ -1,13 +1,13 @@
-const FavoriteComponent = ({ color = "#007782" }) => {
+const FavoriteComponent = ({ color, onClick }: { color: string; onClick?: () => void }) => {
 	return (
-		<div className="favorite">
+		<div onClick={onClick} className="favorite">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
-				fill="#007782"
 				height="20px"
 				width="20px"
 				version="1.1"
 				id="Capa_1"
+				fill={color}
 				viewBox="0 0 471.701 471.701"
 			>
 				<g>

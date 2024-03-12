@@ -134,6 +134,35 @@ body {
 	align-items: center;
 }
 
+.favorite_button {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 16px;
+	color: white;
+	background-color: #c9c9c900;
+	border: 0.5px solid #fff;
+	border-radius: 30px;
+	padding: 10px 20px;
+	margin-top: 30px;
+	cursor: pointer;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	@media (max-width: 1280px) {
+		font-size: 10px;
+		padding: 8px 16px;
+		margin-top: 10px;
+	}
+}
+
+.photo_container:hover .favorite_button {
+	opacity: 1;
+	@media (max-width: 1024px) {
+		display: none;
+	}
+}
+
 .favorite {
 	position: absolute;
 	bottom: 2%;
