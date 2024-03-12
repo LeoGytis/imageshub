@@ -22,10 +22,7 @@ const FetchData: React.FC = (): JSX.Element => {
 	}, []);
 
 	const initialFavorites = localStorage.getItem("favorites") ? JSON.parse(localStorage.getItem("favorites")!) : {};
-
 	const [favorites, setFavorites] = useState<Record<string, boolean>>(initialFavorites);
-
-	// const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
 	const apiKey = "164c38fb43c193481ea2a3dfc30b4180"; //public api key
 	// --- big macro gallery ---
@@ -35,15 +32,7 @@ const FetchData: React.FC = (): JSX.Element => {
 
 	useEffect(() => {
 		fetchPhotos();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
-	// useEffect(() => {
-	// 	const storedFavorites = localStorage.getItem("favorites");
-	// 	if (storedFavorites) {
-	// 		setFavorites(JSON.parse(storedFavorites));
-	// 	}
-	// }, []);
 
 	useEffect(() => {
 		localStorage.setItem("favorites", JSON.stringify(favorites));
