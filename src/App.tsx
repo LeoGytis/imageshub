@@ -2,8 +2,9 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import ScreenSizeHelper from "./components/ScreenSizeHelper";
 import FavoriteComponent from "./components/FavoriteComponent";
 import LoaderComponent from "./components/LoaderComponent";
+import ResponsiveImage from "./components/ResponsiveImage";
 
-interface PhotoProps {
+export interface PhotoProps {
 	id: string;
 	farm: number;
 	server: string;
@@ -136,10 +137,7 @@ function App() {
 						key={photo.id}
 						ref={index === photos.length - 1 ? lastPhotoRef : undefined}
 					>
-						<img
-							alt={photo.title}
-							src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
-						/>
+						<ResponsiveImage photo={photo} isMobile={isMobile()} isTablet={isTablet()} />
 						<div className="overlay">
 							<div>
 								<h3>{photo.title}</h3>
