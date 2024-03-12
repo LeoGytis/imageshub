@@ -13,7 +13,19 @@ interface PhotoProps {
 const FetchData: React.FC = (): JSX.Element => {
 	const [photos, setPhotos] = useState<PhotoProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
-	const [favorites, setFavorites] = useState<Record<string, boolean>>({});
+
+	useEffect(() => {
+		const storedFavorites = localStorage.getItem("favorites");
+		if (storedFavorites) {
+			setFavorites(JSON.parse(storedFavorites));
+		}
+	}, []);
+
+	const initialFavorites = localStorage.getItem("favorites") ? JSON.parse(localStorage.getItem("favorites")!) : {};
+
+	const [favorites, setFavorites] = useState<Record<string, boolean>>(initialFavorites);
+
+	// const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
 	const apiKey = "164c38fb43c193481ea2a3dfc30b4180"; //public api key
 	// --- big macro gallery ---
@@ -26,12 +38,16 @@ const FetchData: React.FC = (): JSX.Element => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	// useEffect(() => {
+	// 	const storedFavorites = localStorage.getItem("favorites");
+	// 	if (storedFavorites) {
+	// 		setFavorites(JSON.parse(storedFavorites));
+	// 	}
+	// }, []);
+
 	useEffect(() => {
-		const storedFavorites = localStorage.getItem("favorites");
-		if (storedFavorites) {
-			setFavorites(JSON.parse(storedFavorites));
-		}
-	}, []);
+		localStorage.setItem("favorites", JSON.stringify(favorites));
+	}, [favorites]);
 
 	const fetchPhotos = async (): Promise<void> => {
 		setIsLoading(true);
@@ -41,7 +57,7 @@ const FetchData: React.FC = (): JSX.Element => {
 			);
 			const responseData = await response.json();
 			if (responseData && responseData.photos && responseData.photos.photo) {
-				setPhotos((prevPhotos) => [...prevPhotos, ...responseData.photos.photo]);
+				setPhotos(responseData.photos.photo);
 			}
 		} catch (error) {
 			console.error("Error fetching data:", error);
