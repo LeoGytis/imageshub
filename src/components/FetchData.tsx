@@ -114,27 +114,24 @@ const FetchData = () => {
 								<h3>{photo.title}</h3>
 								<p>{photo.ownername}</p>
 							</div>
-							{/* <button onClick={() => toggleFavorite(photo.id)}>
-								{favorites[photo.id] ? "Unfavorite" : "Favorite"}
-							</button>
-							{favorites[photo.id] ? <FavoriteComponent color={"#fff522"} /> : "Favorite"} */}
 						</div>
+						{isDesktop() ? (
+							<>
+								<button onClick={() => toggleFavorite(photo.id)} className="favorite_button">
+									{favorites[photo.id] ? "Unfavorite" : "Favorite"}
+								</button>
+								{favorites[photo.id] ? <FavoriteComponent color={"#ff0000"} /> : null}
+							</>
+						) : // <FavoriteComponent
+						// 	onClick={() => toggleFavorite(photo.id)}
+						// 	color={favorites[photo.id] ? "#fff" : "#ff0000"}
+						// />
 
-						<div className="">
-							{isDesktop() ? (
-								<>
-									<button onClick={() => toggleFavorite(photo.id)} className="favorite_button">
-										{favorites[photo.id] ? "Unfavorite" : "Favorite"}
-									</button>
-									{favorites[photo.id] ? <FavoriteComponent color={"#ff0000"} /> : null}
-								</>
-							) : (
-								<FavoriteComponent
-									onClick={() => toggleFavorite(photo.id)}
-									color={favorites[photo.id] ? "#fff" : "#ff0000"}
-								/>
-							)}
-						</div>
+						favorites[photo.id] ? (
+							<FavoriteComponent onClick={() => toggleFavorite(photo.id)} color={"#fff"} />
+						) : (
+							<FavoriteComponent onClick={() => toggleFavorite(photo.id)} color={"#ff0000"} />
+						)}
 					</div>
 				))}
 				{isLoading && <LoaderComponent />}
