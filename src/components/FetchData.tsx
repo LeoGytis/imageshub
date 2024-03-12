@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import LoaderComponent from "./LoaderComponent";
 
 interface PhotoProps {
 	id: string;
@@ -58,7 +59,7 @@ const FetchData: React.FC = (): JSX.Element => {
 	return (
 		<>
 			{isLoading ? (
-				<p>Loading...</p>
+				<LoaderComponent />
 			) : (
 				<div className="gallery_wrapper">
 					{photos &&
