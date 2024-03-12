@@ -14,8 +14,8 @@ const FetchData: React.FC = (): JSX.Element => {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [favorites, setFavorites] = useState<Record<string, boolean>>({});
 
-	const apiKey = "a38a46fe5bac997c4fdde47d6b7ed5bf";
-	const userId = "4e99becb24e6b830";
+	// const apiKey = "a38a46fe5bac997c4fdde47d6b7ed5bf";
+	const apiKey = "164c38fb43c193481ea2a3dfc30b4180"; //public
 	// const galleryId = "195820781-72157721014962461"; // big macro gallery
 	const galleryId = "91216181-72157638326919233";
 

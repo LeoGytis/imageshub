@@ -1,4 +1,3 @@
-import "./global.css";
 import FetchData from "./components/FetchData";
 
 function App() {
