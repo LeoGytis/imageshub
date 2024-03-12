@@ -18,6 +18,16 @@ const FetchData = () => {
 	const [page, setPage] = useState<number>(1);
 	const { isMobile, isTablet, isDesktop } = ScreenSizeHelper();
 
+	useEffect(() => {
+		const storedFavorites = localStorage.getItem("favorites");
+		if (storedFavorites) {
+			setFavorites(JSON.parse(storedFavorites));
+		}
+	}, []);
+
+	const initialFavorites = localStorage.getItem("favorites") ? JSON.parse(localStorage.getItem("favorites")!) : {};
+	const [favorites, setFavorites] = useState<Record<string, boolean>>(initialFavorites);
+
 	const apiKey = "164c38fb43c193481ea2a3dfc30b4180";
 	// const galleryId = "91216181-72157638326919233";
 	const galleryId = "195820781-72157721014962461";
@@ -37,6 +47,10 @@ const FetchData = () => {
 	useEffect(() => {
 		fetchPhotos();
 	}, [page]);
+
+	useEffect(() => {
+		localStorage.setItem("favorites", JSON.stringify(favorites));
+	}, [favorites]);
 
 	// Function to fetch photos from the API
 	const fetchPhotos = async (): Promise<void> => {
@@ -79,6 +93,13 @@ const FetchData = () => {
 		};
 	}, [handleScroll]);
 
+	const toggleFavorite = (photoId: string): void => {
+		setFavorites((prevFavorites) => ({
+			...prevFavorites,
+			[photoId]: !prevFavorites[photoId],
+		}));
+	};
+
 	return (
 		<>
 			<div className="gallery_container">
@@ -93,7 +114,9 @@ const FetchData = () => {
 								<h3>{photo.title}</h3>
 								<p>{photo.ownername}</p>
 							</div>
-							<button>favooorite</button>
+							<button onClick={() => toggleFavorite(photo.id)}>
+								{favorites[photo.id] ? "Unfavorite" : "Favorite"}
+							</button>
 						</div>
 					</div>
 				))}
