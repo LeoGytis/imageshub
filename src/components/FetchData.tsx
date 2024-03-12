@@ -93,8 +93,9 @@ const FetchData = () => {
 		}
 
 		return () => {
-			if (lastPhotoRef.current) {
-				observer.unobserve(lastPhotoRef.current);
+			const currentRef = lastPhotoRef.current;
+			if (currentRef) {
+				observer.unobserve(currentRef);
 			}
 		};
 	}, [isLoading]);
@@ -103,7 +104,7 @@ const FetchData = () => {
 	const handleScroll = useCallback(() => {
 		const windowHeight = window.innerHeight;
 		const documentHeight = document.documentElement.scrollHeight;
-		const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+		const scrollTop = window.scrollY || document.documentElement.scrollTop;
 		const scrolledToBottom = Math.ceil(scrollTop + windowHeight) >= documentHeight;
 
 		if (scrolledToBottom && !isLoading) {
