@@ -116,7 +116,7 @@ body {
 
 .favorite_button {
 	position: absolute;
-	bottom: 5%;
+	bottom: 0;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	font-size: 16px;
@@ -131,9 +131,6 @@ body {
 	transition: opacity 0.3s ease;
 	&:hover {
 		background: rgba(255, 255, 255, 0.3);
-	}
-	@media (min-width: 1280px) {
-		bottom: 20%;
 	}
 	@media (max-width: 1280px) {
 		font-size: 10px;

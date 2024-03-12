@@ -122,15 +122,11 @@ const FetchData = () => {
 								</button>
 								{favorites[photo.id] ? <FavoriteComponent color={"#ff0000"} /> : null}
 							</>
-						) : // <FavoriteComponent
-						// 	onClick={() => toggleFavorite(photo.id)}
-						// 	color={favorites[photo.id] ? "#fff" : "#ff0000"}
-						// />
-
-						favorites[photo.id] ? (
-							<FavoriteComponent onClick={() => toggleFavorite(photo.id)} color={"#fff"} />
 						) : (
-							<FavoriteComponent onClick={() => toggleFavorite(photo.id)} color={"#ff0000"} />
+							<FavoriteComponent
+								onClick={() => toggleFavorite(photo.id)}
+								color={favorites[photo.id] ? "#ffffff" : "#ff0000"}
+							/>
 						)}
 					</div>
 				))}
