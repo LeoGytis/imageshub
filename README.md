@@ -4,7 +4,7 @@ A dynamic image gallery utilizing the Flickr API.
 The project emphasizes responsive design principles to ensure optimal viewing across various devices and screen sizes.
 The project aims to deliver a visually appealing and user-friendly image gallery experience while prioritizing performance optimization, code reliability, and responsiveness across devices.
 
-#Features:
+# Features
 
 - Utilized the Flickr API (or an alternative supporting paginated results, unique images with metadata, and access methods) for fetching image data.
 - Implemented responsive design techniques to ensure the gallery adjusts seamlessly to different viewport sizes, providing an optimal viewing experience across devices.
