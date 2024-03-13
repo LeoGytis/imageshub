@@ -5,6 +5,7 @@ import LoaderComponent from "./components/LoaderComponent";
 import ResponsiveImage from "./components/ResponsiveImage";
 import ApiGetPhotos from "./components/ApiGetPhotos";
 import { FavoriteButton, FavoritesComponent } from "./components/FavoritesComponent";
+import ScrollComponent from "./components/ScrollComponent";
 
 export interface PhotoProps {
 	id: string;
@@ -24,6 +25,8 @@ function App() {
 	const perPage = () => {
 		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of photos per page
 	};
+
+	ScrollComponent({ isLoading, setPage });
 
 	// Function to fetch photos from the API
 	const fetchPhotos = async () => {
@@ -46,26 +49,6 @@ function App() {
 	useEffect(() => {
 		fetchPhotos();
 	}, [page]);
-
-	// Function to handle scroll events
-	const handleScroll = useCallback(() => {
-		const windowHeight = window.innerHeight;
-		const documentHeight = document.documentElement.scrollHeight;
-		const scrollTop = window.scrollY || document.documentElement.scrollTop;
-		const scrolledToBottom = Math.ceil(scrollTop + windowHeight) >= documentHeight;
-
-		if (scrolledToBottom && !isLoading) {
-			setPage((prevPage) => prevPage + 1);
-		}
-	}, [isLoading]);
-
-	// Scroll event listener
-	useEffect(() => {
-		window.addEventListener("scroll", handleScroll);
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	}, [handleScroll]);
 
 	return (
 		<>
