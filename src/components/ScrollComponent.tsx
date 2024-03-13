@@ -23,6 +23,7 @@ const ScrollComponent = ({ isLoading, setPage }: ScrollOptionsProps) => {
 			window.removeEventListener("scroll", handleScroll);
 		};
 	}, [handleScroll]);
+	return null;
 };
 
 export default ScrollComponent;

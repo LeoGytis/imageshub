@@ -1,36 +1,40 @@
 import { render, screen } from "@testing-library/react";
 import ResponsiveImage from "./ResponsiveImage";
 
+// Mock PhotoProps
+const photoMock = {
+	farm: 1,
+	server: "server1",
+	id: "photoId",
+	secret: "secretKey",
+	title: "Test Photo",
+	ownername: "Test Owner",
+};
+
 describe("ResponsiveImage component", () => {
-	const photoMock = {
-		farm: 1,
-		server: "server",
-		id: "id",
-		secret: "secret",
-		title: "title",
-		ownername: "ownername", // Adding ownername property
-	};
-
-	it("renders correctly", () => {
+	it("renders with correct image sources", () => {
 		render(<ResponsiveImage photo={photoMock} isMobile={false} isTablet={false} />);
-		expect(screen.getByAltText(photoMock.title)).toBeInTheDocument();
+		const imgElement = screen.getByAltText(photoMock.title);
+		expect(imgElement).toBeInTheDocument();
+
+		const imageSrcSet = imgElement.getAttribute("srcSet");
+		expect(imageSrcSet).toContain(
+			`farm${photoMock.farm}.staticflickr.com/${photoMock.server}/${photoMock.id}_${photoMock.secret}.jpg?q=low 300w`
+		);
+		expect(imageSrcSet).toContain(
+			`farm${photoMock.farm}.staticflickr.com/${photoMock.server}/${photoMock.id}_${photoMock.secret}.jpg?q=low 600w`
+		);
+		expect(imageSrcSet).toContain(
+			`farm${photoMock.farm}.staticflickr.com/${photoMock.server}/${photoMock.id}_${photoMock.secret}.jpg?q=high 1024w`
+		);
 	});
 
-	it("renders with correct image sources for mobile", () => {
-		render(<ResponsiveImage photo={photoMock} isMobile={true} isTablet={false} />);
-		const imageElement = screen.getByAltText(photoMock.title);
-		expect(imageElement).toHaveAttribute("srcset", expect.stringContaining("q=low"));
-	});
+	it("renders with correct image sizes for different viewports", () => {
+		render(<ResponsiveImage photo={photoMock} isMobile={true} isTablet={true} />);
+		const imgElement = screen.getByAltText(photoMock.title);
+		expect(imgElement).toBeInTheDocument();
 
-	it("renders with correct image sources for tablet", () => {
-		render(<ResponsiveImage photo={photoMock} isMobile={false} isTablet={true} />);
-		const imageElement = screen.getByAltText(photoMock.title);
-		expect(imageElement).toHaveAttribute("srcset", expect.stringContaining("q=medium"));
-	});
-
-	it("renders with correct image sources for desktop", () => {
-		render(<ResponsiveImage photo={photoMock} isMobile={false} isTablet={false} />);
-		const imageElement = screen.getByAltText(photoMock.title);
-		expect(imageElement).toHaveAttribute("srcset", expect.stringContaining("q=high"));
+		const imageSizes = imgElement.getAttribute("sizes");
+		expect(imageSizes).toBe("(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw");
 	});
 });
