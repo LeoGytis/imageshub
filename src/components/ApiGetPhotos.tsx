@@ -1,6 +1,6 @@
 import { PhotoProps } from "../App";
 
-const GetPhotoNow = async (page: number, perPage: number): Promise<PhotoProps[]> => {
+const ApiGetPhotos = async (page: number, perPage: number): Promise<PhotoProps[]> => {
 	const apiKey = "418c92311a12ac32a76b76c3c40310e2";
 	const galleryId = "195820781-72157721014962461";
 	// const galleryId = "66911286-72157647277042064";
@@ -28,4 +28,4 @@ const GetPhotoNow = async (page: number, perPage: number): Promise<PhotoProps[]>
 	}
 };
 
-export default GetPhotoNow;
+export default ApiGetPhotos;

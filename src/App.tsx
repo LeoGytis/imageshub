@@ -3,7 +3,7 @@ import ScreenSizeHelper from "./components/ScreenSizeHelper";
 import FavoriteComponent from "./components/FavoriteComponent";
 import LoaderComponent from "./components/LoaderComponent";
 import ResponsiveImage from "./components/ResponsiveImage";
-import GetPhotoNow from "./components/GetPhotoNow";
+import ApiGetPhotos from "./components/ApiGetPhotos";
 
 export interface PhotoProps {
 	id: string;
@@ -20,10 +20,10 @@ function App() {
 	const [page, setPage] = useState<number>(1);
 	const { isMobile, isTablet, isDesktop } = ScreenSizeHelper();
 	const lastPhotoRef = useRef<HTMLDivElement>(null);
-	// const perPage = () => {
-	// 	return isMobile() ? 6 : isTablet() ? 9 : 12; // Number of photos per page
-	// };
-	const perPage = 9;
+	const perPage = () => {
+		return isMobile() ? 6 : isTablet() ? 9 : 12; // Number of photos per page
+	};
+	// const perPage = 3;
 
 	useEffect(() => {
 		const storedFavorites = localStorage.getItem("favorites");
@@ -39,7 +39,7 @@ function App() {
 	const fetchPhotos = async () => {
 		setIsLoading(true);
 		try {
-			const photosData = await GetPhotoNow(page, perPage);
+			const photosData = await ApiGetPhotos(page, perPage());
 			// Prevent duplication of photos on the initial page load
 			if (page === 1) {
 				setPhotos([...photosData]);
