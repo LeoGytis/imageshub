@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import LoaderComponent from "./LoaderComponent";
-import FavoriteComponent from "./FavoriteComponent";
+import FavoriteComponent from "./FavoriteIcon";
 import ScreenSizeHelper from "./MediaQuery";
 
 interface PhotoProps {

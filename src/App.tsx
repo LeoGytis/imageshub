@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import MediaQuery from "./components/MediaQuery";
-import FavoriteComponent from "./components/FavoriteComponent";
+import FavoriteIcon from "./components/FavoriteIcon";
 import LoaderComponent from "./components/LoaderComponent";
 import ResponsiveImage from "./components/ResponsiveImage";
 import ApiGetPhotos from "./components/ApiGetPhotos";
@@ -23,15 +23,15 @@ function App() {
 		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of photos per page
 	};
 
-	useEffect(() => {
-		const storedFavorites = localStorage.getItem("favorites");
-		if (storedFavorites) {
-			setFavorites(JSON.parse(storedFavorites));
-		}
-	}, []);
+	// useEffect(() => {
+	// 	const storedFavorites = localStorage.getItem("favorites");
+	// 	if (storedFavorites) {
+	// 		setFavorites(JSON.parse(storedFavorites));
+	// 	}
+	// }, []);
 
-	const initialFavorites = localStorage.getItem("favorites") ? JSON.parse(localStorage.getItem("favorites")!) : {};
-	const [favorites, setFavorites] = useState<Record<string, boolean>>(initialFavorites);
+	// const initialFavorites = localStorage.getItem("favorites") ? JSON.parse(localStorage.getItem("favorites")!) : {};
+	// const [favorites, setFavorites] = useState<Record<string, boolean>>(initialFavorites);
 
 	// Function to fetch photos from the API
 	const fetchPhotos = async () => {
@@ -58,9 +58,9 @@ function App() {
 		fetchPhotos();
 	}, [page]);
 
-	useEffect(() => {
-		localStorage.setItem("favorites", JSON.stringify(favorites));
-	}, [favorites]);
+	// useEffect(() => {
+	// 	localStorage.setItem("favorites", JSON.stringify(favorites));
+	// }, [favorites]);
 
 	// Function to handle scroll events
 	const handleScroll = useCallback(() => {
@@ -82,12 +82,12 @@ function App() {
 		};
 	}, [handleScroll]);
 
-	const toggleFavorite = (photoId: string): void => {
-		setFavorites((prevFavorites) => ({
-			...prevFavorites,
-			[photoId]: !prevFavorites[photoId],
-		}));
-	};
+	// const toggleFavorite = (photoId: string): void => {
+	// 	setFavorites((prevFavorites) => ({
+	// 		...prevFavorites,
+	// 		[photoId]: !prevFavorites[photoId],
+	// 	}));
+	// };
 
 	return (
 		<>
@@ -99,13 +99,17 @@ function App() {
 							<div>
 								<h3>{photo.title}</h3>
 								<p>{photo.ownername}</p>{" "}
-								<button onClick={() => toggleFavorite(photo.id)} className="favourite_button">
+								{/* <button onClick={() => toggleFavorite(photo.id)} className="favourite_button">
 									{favorites[photo.id] ? "Unfavourite" : "Favourite"}
-								</button>
+								</button> */}
+								{/* <FavoriteButton
+									isFavorited={favorites[photo.id]}
+									onClick={() => toggleFavorite(photo.id)}
+								/> */}
 							</div>
 						</div>
 
-						{favorites[photo.id] ? <FavoriteComponent color={"#ffffff"} /> : null}
+						{/* {favorites[photo.id] ? <FavoriteIcon color={"#ffffff"} /> : null} */}
 					</div>
 				))}
 				{isLoading && <LoaderComponent />}

@@ -1,4 +1,4 @@
-const FavoriteComponent = ({ color }: { color: string }) => {
+const FavoriteIcon = ({ color }: { color: string }) => {
 	return (
 		<div className="favorite_heart">
 			<svg
@@ -18,4 +18,4 @@ const FavoriteComponent = ({ color }: { color: string }) => {
 	);
 };
 
-export default FavoriteComponent;
+export default FavoriteIcon;
