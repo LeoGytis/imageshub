@@ -1,6 +1,18 @@
-# Getting Started with Create React App
+# Imged Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A dynamic image gallery utilizing the Flickr API.
+The project emphasizes responsive design principles to ensure optimal viewing across various devices and screen sizes.
+The project aims to deliver a visually appealing and user-friendly image gallery experience while prioritizing performance optimization, code reliability, and responsiveness across devices.
+
+#Features:
+
+- Utilized the Flickr API (or an alternative supporting paginated results, unique images with metadata, and access methods) for fetching image data.
+- Implemented responsive design techniques to ensure the gallery adjusts seamlessly to different viewport sizes, providing an optimal viewing experience across devices.
+- Enabled infinite scroll functionality to dynamically load additional images as the user scrolls, enhancing user engagement and exploration.
+- Utilized TypeScript for static typing to enhance code maintainability, reduce errors, and improve development efficiency.
+- Implementd lazy-loading techniques to optimize page loading times by loading images only when they are about to come into view, conserving bandwidth and improving performance.
+- Incorporated a responsive image solution to save bandwidth by loading higher quality images only when necessary, based on the user's device capabilities and viewport size.
+
 
 ## Available Scripts
 
@@ -19,28 +31,3 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
