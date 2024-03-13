@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import MediaQuery from "./components/MediaQuery";
 import FavoriteIcon from "./components/FavoriteIcon";
 import LoaderComponent from "./components/LoaderComponent";
