@@ -3,6 +3,7 @@ import ScreenSizeHelper from "./components/ScreenSizeHelper";
 import FavoriteComponent from "./components/FavoriteComponent";
 import LoaderComponent from "./components/LoaderComponent";
 import ResponsiveImage from "./components/ResponsiveImage";
+import GetPhotoNow from "./components/GetPhotoNow";
 
 export interface PhotoProps {
 	id: string;
@@ -19,6 +20,10 @@ function App() {
 	const [page, setPage] = useState<number>(1);
 	const { isMobile, isTablet, isDesktop } = ScreenSizeHelper();
 	const lastPhotoRef = useRef<HTMLDivElement>(null);
+	// const perPage = () => {
+	// 	return isMobile() ? 6 : isTablet() ? 9 : 12; // Number of photos per page
+	// };
+	const perPage = 9;
 
 	useEffect(() => {
 		const storedFavorites = localStorage.getItem("favorites");
@@ -30,47 +35,16 @@ function App() {
 	const initialFavorites = localStorage.getItem("favorites") ? JSON.parse(localStorage.getItem("favorites")!) : {};
 	const [favorites, setFavorites] = useState<Record<string, boolean>>(initialFavorites);
 
-	const apiKey = "164c38fb43c193481ea2a3dfc30b4180";
-	// const galleryId = "91216181-72157638326919233";
-	const galleryId = "195820781-72157721014962461";
-	const perPage = () => {
-		return isMobile() ? 6 : isTablet() ? 9 : 12; // Number of photos per page
-	};
-	const apiUrl = `https://www.flickr.com/services/rest/?\
-	&method=flickr.galleries.getPhotos\
-	&api_key=${apiKey}\
-	&gallery_id=${galleryId}\
-	&format=json\
-	&nojsoncallback=1\
-	&extras=owner_name\
-	&page=${page}\
-	&per_page=${perPage()}`;
-
-	useEffect(() => {
-		fetchPhotos();
-	}, []);
-
-	useEffect(() => {
-		fetchPhotos();
-	}, [page]);
-
-	useEffect(() => {
-		localStorage.setItem("favorites", JSON.stringify(favorites));
-	}, [favorites]);
-
 	// Function to fetch photos from the API
-	const fetchPhotos = async (): Promise<void> => {
+	const fetchPhotos = async () => {
 		setIsLoading(true);
 		try {
-			const response = await fetch(apiUrl);
-			const responseData = await response.json();
-			if (responseData && responseData.photos && responseData.photos.photo) {
-				// Prevent duplication of photos on the initial page load
-				if (page === 1) {
-					setPhotos(responseData.photos.photo);
-				} else {
-					setPhotos((prevPhotos) => [...prevPhotos, ...responseData.photos.photo]);
-				}
+			const photosData = await GetPhotoNow(page, perPage);
+			// Prevent duplication of photos on the initial page load
+			if (page === 1) {
+				setPhotos([...photosData]);
+			} else {
+				setPhotos((prevPhotos) => [...prevPhotos, ...photosData]);
 			}
 		} catch (error) {
 			console.error("Error fetching data:", error);
@@ -78,6 +52,18 @@ function App() {
 			setIsLoading(false);
 		}
 	};
+
+	useEffect(() => {
+		fetchPhotos();
+	}, [page]);
+
+	useEffect(() => {
+		fetchPhotos();
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem("favorites", JSON.stringify(favorites));
+	}, [favorites]);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
