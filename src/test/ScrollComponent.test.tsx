@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import ScrollComponent from "./ScrollComponent";
+import ScrollComponent from "../components/ScrollComponent";
 
 // Mock window object properties
 Object.defineProperty(window, "innerHeight", { value: 500 });

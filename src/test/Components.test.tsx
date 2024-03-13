@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ResponsiveImage from "./ResponsiveImage";
+import ResponsiveImage from "../components/ResponsiveImage";
 
 // Mock PhotoProps
 const photoMock = {
