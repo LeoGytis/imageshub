@@ -4,6 +4,7 @@ import FavoriteIcon from "./components/FavoriteIcon";
 import LoaderComponent from "./components/LoaderComponent";
 import ResponsiveImage from "./components/ResponsiveImage";
 import ApiGetPhotos from "./components/ApiGetPhotos";
+import { FavoriteButton, FavoritesComponent } from "./components/FavoritesComponent";
 
 export interface PhotoProps {
 	id: string;
@@ -17,21 +18,12 @@ export interface PhotoProps {
 function App() {
 	const [photos, setPhotos] = useState<PhotoProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [favorites, toggleFavorite] = FavoritesComponent();
 	const [page, setPage] = useState<number>(1);
 	const { isMobile, isTablet, isDesktop } = MediaQuery();
 	const perPage = () => {
 		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of photos per page
 	};
-
-	// useEffect(() => {
-	// 	const storedFavorites = localStorage.getItem("favorites");
-	// 	if (storedFavorites) {
-	// 		setFavorites(JSON.parse(storedFavorites));
-	// 	}
-	// }, []);
-
-	// const initialFavorites = localStorage.getItem("favorites") ? JSON.parse(localStorage.getItem("favorites")!) : {};
-	// const [favorites, setFavorites] = useState<Record<string, boolean>>(initialFavorites);
 
 	// Function to fetch photos from the API
 	const fetchPhotos = async () => {
@@ -58,10 +50,6 @@ function App() {
 		fetchPhotos();
 	}, [page]);
 
-	// useEffect(() => {
-	// 	localStorage.setItem("favorites", JSON.stringify(favorites));
-	// }, [favorites]);
-
 	// Function to handle scroll events
 	const handleScroll = useCallback(() => {
 		const windowHeight = window.innerHeight;
@@ -82,13 +70,6 @@ function App() {
 		};
 	}, [handleScroll]);
 
-	// const toggleFavorite = (photoId: string): void => {
-	// 	setFavorites((prevFavorites) => ({
-	// 		...prevFavorites,
-	// 		[photoId]: !prevFavorites[photoId],
-	// 	}));
-	// };
-
 	return (
 		<>
 			<div className="gallery_container">
@@ -99,17 +80,14 @@ function App() {
 							<div>
 								<h3>{photo.title}</h3>
 								<p>{photo.ownername}</p>{" "}
-								{/* <button onClick={() => toggleFavorite(photo.id)} className="favourite_button">
-									{favorites[photo.id] ? "Unfavourite" : "Favourite"}
-								</button> */}
-								{/* <FavoriteButton
+								<FavoriteButton
 									isFavorited={favorites[photo.id]}
 									onClick={() => toggleFavorite(photo.id)}
-								/> */}
+								/>
 							</div>
 						</div>
 
-						{/* {favorites[photo.id] ? <FavoriteIcon color={"#ffffff"} /> : null} */}
+						{favorites[photo.id] ? <FavoriteIcon color={"#ffffff"} /> : null}
 					</div>
 				))}
 				{isLoading && <LoaderComponent />}
