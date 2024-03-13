@@ -42,9 +42,6 @@ function App() {
 			setIsLoading(false);
 		}
 	};
-	useEffect(() => {
-		fetchPhotos();
-	}, []);
 
 	useEffect(() => {
 		fetchPhotos();
@@ -86,7 +83,6 @@ function App() {
 								/>
 							</div>
 						</div>
-
 						{favorites[photo.id] ? <FavoriteIcon color={"#ffffff"} /> : null}
 					</div>
 				))}
