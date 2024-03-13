@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import LoaderComponent from "./LoaderComponent";
 import FavoriteComponent from "./FavoriteComponent";
-import ScreenSizeHelper from "./ScreenSizeHelper";
+import ScreenSizeHelper from "./MediaQuery";
 
 interface PhotoProps {
 	id: string;

@@ -83,7 +83,6 @@ body {
 
 .overlay > div {
 	position: relative;
-	max-width: 50%;
 	text-align: center;
 }
 

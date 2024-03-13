@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import ScreenSizeHelper from "./components/ScreenSizeHelper";
+import { useState, useEffect, useCallback } from "react";
+import MediaQuery from "./components/MediaQuery";
 import FavoriteComponent from "./components/FavoriteComponent";
 import LoaderComponent from "./components/LoaderComponent";
 import ResponsiveImage from "./components/ResponsiveImage";
@@ -18,9 +18,9 @@ function App() {
 	const [photos, setPhotos] = useState<PhotoProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [page, setPage] = useState<number>(1);
-	const { isMobile, isTablet, isDesktop } = ScreenSizeHelper();
+	const { isMobile, isTablet, isDesktop } = MediaQuery();
 	const perPage = () => {
-		return isMobile() ? 6 : isTablet() ? 9 : 12; // Number of photos per page
+		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of photos per page
 	};
 
 	useEffect(() => {
@@ -50,14 +50,13 @@ function App() {
 			setIsLoading(false);
 		}
 	};
+	useEffect(() => {
+		fetchPhotos();
+	}, []);
 
 	useEffect(() => {
 		fetchPhotos();
 	}, [page]);
-
-	useEffect(() => {
-		fetchPhotos();
-	}, []);
 
 	useEffect(() => {
 		localStorage.setItem("favorites", JSON.stringify(favorites));
