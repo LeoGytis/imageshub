@@ -19,11 +19,9 @@ function App() {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [page, setPage] = useState<number>(1);
 	const { isMobile, isTablet, isDesktop } = ScreenSizeHelper();
-	const lastPhotoRef = useRef<HTMLDivElement>(null);
 	const perPage = () => {
 		return isMobile() ? 6 : isTablet() ? 9 : 12; // Number of photos per page
 	};
-	// const perPage = 3;
 
 	useEffect(() => {
 		const storedFavorites = localStorage.getItem("favorites");
@@ -65,28 +63,6 @@ function App() {
 		localStorage.setItem("favorites", JSON.stringify(favorites));
 	}, [favorites]);
 
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				if (entries[0].isIntersecting && !isLoading) {
-					setPage((prevPage) => prevPage + 1);
-				}
-			},
-			{ threshold: 1 }
-		);
-
-		if (lastPhotoRef.current) {
-			observer.observe(lastPhotoRef.current);
-		}
-
-		return () => {
-			const currentRef = lastPhotoRef.current;
-			if (currentRef) {
-				observer.unobserve(currentRef);
-			}
-		};
-	}, [isLoading]);
-
 	// Function to handle scroll events
 	const handleScroll = useCallback(() => {
 		const windowHeight = window.innerHeight;
@@ -117,12 +93,8 @@ function App() {
 	return (
 		<>
 			<div className="gallery_container">
-				{photos.map((photo, index) => (
-					<div
-						className="photo_container"
-						key={photo.id}
-						ref={index === photos.length - 1 ? lastPhotoRef : undefined}
-					>
+				{photos.map((photo) => (
+					<div className="photo_container" key={photo.id}>
 						<ResponsiveImage photo={photo} isMobile={isMobile()} isTablet={isTablet()} />
 						<div className="overlay">
 							<div>
