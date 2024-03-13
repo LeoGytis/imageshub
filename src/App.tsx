@@ -51,27 +51,29 @@ function App() {
 	}, [page]);
 
 	return (
-		<>
-			<div className="gallery_container">
-				{photos.map((photo) => (
-					<div className="photo_container" key={photo.id}>
-						<ResponsiveImage photo={photo} isMobile={isMobile()} isTablet={isTablet()} />
-						<div className="overlay">
-							<div>
-								<h3>{photo.title}</h3>
-								<p>{photo.ownername}</p>{" "}
-								<FavoriteButton
-									isFavorited={favorites[photo.id]}
-									onClick={() => toggleFavorite(photo.id)}
-								/>
-							</div>
+		<div className="gallery_container">
+			{photos.map((photo) => (
+				<div
+					onClick={!isDesktop() ? () => toggleFavorite(photo.id) : undefined}
+					className="photo_container"
+					key={photo.id}
+				>
+					<ResponsiveImage photo={photo} isMobile={isMobile()} isTablet={isTablet()} />
+					<div className="overlay">
+						<div>
+							<h3>{photo.title}</h3>
+							<p>{photo.ownername}</p>{" "}
+							<FavoriteButton
+								isFavorited={favorites[photo.id]}
+								onClick={() => toggleFavorite(photo.id)}
+							/>
 						</div>
-						{favorites[photo.id] ? <FavoriteIcon color={"#ffffff"} /> : null}
 					</div>
-				))}
-				{isLoading && <LoaderComponent />}
-			</div>
-		</>
+					{favorites[photo.id] ? <FavoriteIcon color={"#ffffff"} /> : null}
+				</div>
+			))}
+			{isLoading && <LoaderComponent />}
+		</div>
 	);
 }
 
