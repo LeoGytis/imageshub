@@ -1,6 +1,6 @@
 const LoaderComponent = ({ color = "#007782" }) => {
 	return (
-		<div className="loader">
+		<div className="loader" data-testid="loader-component">
 			<svg
 				version="1.1"
 				xmlns="http://www.w3.org/2000/svg"

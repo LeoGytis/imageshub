@@ -1,10 +1,14 @@
-/**
- * @jest-environment jsdom
- */
-import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import App from "../App";
 
-test("renders App component without crashing", () => {
-	render(<App />);
+describe("App Component", () => {
+	test("renders without crashing", () => {
+		render(<App />);
+	});
+
+	test("renders loader when isLoading is true", () => {
+		const { getByTestId } = render(<App />);
+		const loader = screen.getByTestId("loader-component");
+		expect(loader).toBeInTheDocument();
+	});
 });
