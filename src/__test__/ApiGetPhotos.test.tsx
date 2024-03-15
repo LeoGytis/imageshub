@@ -1,12 +1,12 @@
 import { PhotoProps } from "../App";
-import ApiGetPhotos from "../components/ApiGetPhotos";
+import ApiGetPhotos from "../utils/ApiGetPhotos";
 
 // Mocking fetch function
 (global as any).fetch = jest.fn().mockImplementation((url: string) => {
 	// Assuming we're mocking the Flickr API response
 	const apiKey = "fakeApiKey";
 	const galleryId = "fakeGalleryId";
-	const expectedUrl = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${apiKey}&gallery_id=${galleryId}&format=json&nojsoncallback=1&page=1&per_page=10`;
+	const expectedUrl = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${apiKey}&gallery_id=${galleryId}&format=json&nojsoncallback=1&page=1&per_page=2`;
 
 	if (url === expectedUrl) {
 		return Promise.resolve({

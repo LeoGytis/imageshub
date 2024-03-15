@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import MediaQuery from "./components/MediaQuery";
+import MediaQuery from "./utils/MediaQuery";
 import FavoriteIcon from "./components/FavoriteIcon";
 import LoaderComponent from "./components/LoaderComponent";
 import ResponsiveImage from "./components/ResponsiveImage";
-import ApiGetPhotos from "./components/ApiGetPhotos";
+import ApiGetPhotos from "./utils/ApiGetPhotos";
 import { FavoriteButton, FavoritesComponent } from "./components/FavoritesComponent";
-import ScrollComponent from "./components/ScrollComponent";
+import ScrollComponent from "./utils/ScrollComponent";
 
 export interface PhotoProps {
 	id: string;

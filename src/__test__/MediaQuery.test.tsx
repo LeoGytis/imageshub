@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { render, screen } from "@testing-library/react";
-import MediaQuery from "../components/MediaQuery";
+import MediaQuery from "../utils/MediaQuery";
 
 describe("MediaQuery", () => {
 	let mediaQuery: any;
