@@ -16,7 +16,13 @@ const ApiGetPhotos = async (page: number, perPage: number): Promise<PhotoProps[]
 
 	try {
 		const response = await fetch(apiUrl);
+		if (!response.ok) {
+			throw new Error(`HTTP error! Status: ${response.status}`);
+		}
 		const responseData = await response.json();
+		if (responseData.stat && responseData.stat === "fail") {
+			throw new Error("API Error");
+		}
 		if (responseData && responseData.photos && responseData.photos.photo) {
 			return responseData.photos.photo;
 		} else {

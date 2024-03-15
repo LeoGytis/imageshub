@@ -6,7 +6,7 @@ import ApiGetPhotos from "../utils/ApiGetPhotos";
 	// Assuming we're mocking the Flickr API response
 	const apiKey = "fakeApiKey";
 	const galleryId = "fakeGalleryId";
-	const expectedUrl = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${apiKey}&gallery_id=${galleryId}&format=json&nojsoncallback=1&page=1&per_page=2`;
+	const expectedUrl = `https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=${apiKey}&gallery_id=${galleryId}&format=json&nojsoncallback=1&page=1&per_page=20`;
 
 	if (url === expectedUrl) {
 		return Promise.resolve({
