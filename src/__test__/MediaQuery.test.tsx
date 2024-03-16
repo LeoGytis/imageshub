@@ -39,6 +39,26 @@ describe("MediaQuery", () => {
 		expect(mediaQuery.isTablet()).toBe(false);
 	});
 
+	it("should detect mobile mode at threshold", () => {
+		// Change window width to mobile size threshold
+		(window as any).innerWidth = 640;
+		window.dispatchEvent(new Event("resize"));
+
+		expect(mediaQuery.isDesktop()).toBe(false);
+		expect(mediaQuery.isMobile()).toBe(true);
+		expect(mediaQuery.isTablet()).toBe(false);
+	});
+
+	it("should detect tablet mode at threshold", () => {
+		// Change window width to tablet size threshold
+		(window as any).innerWidth = 1024;
+		window.dispatchEvent(new Event("resize"));
+
+		expect(mediaQuery.isDesktop()).toBe(false);
+		expect(mediaQuery.isMobile()).toBe(false);
+		expect(mediaQuery.isTablet()).toBe(true);
+	});
+
 	// Cleanup
 	afterAll(() => {
 		delete (window as any).innerWidth;
