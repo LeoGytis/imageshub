@@ -19,7 +19,7 @@ const FavoritesComponent = (): [Record<string, boolean>, (photoId: string) => vo
 };
 
 const FavoriteButton: React.FC<{ isFavorited: boolean; onClick: () => void }> = ({ isFavorited, onClick }) => (
-	<button onClick={onClick} className="favourite-button">
+	<button onClick={onClick} className="favorite-button">
 		{isFavorited ? "Unfavorite" : "Favorite"}
 	</button>
 );
