@@ -56,7 +56,7 @@ function App() {
 				<div
 					onClick={!isDesktop() ? () => toggleFavorite(photo.id) : undefined}
 					className="photo-container"
-					data-testid="photo-container"
+					data-testid={`photo-container`}
 					key={photo.id}
 				>
 					<ResponsiveImage photo={photo} isMobile={isMobile()} isTablet={isTablet()} />
