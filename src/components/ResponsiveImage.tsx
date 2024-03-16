@@ -24,6 +24,7 @@ const ResponsiveImage = ({ photo, isMobile, isTablet }: ResponsiveImageProps) =>
 			srcSet={imageSrcSet}
 			sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
 			loading="lazy"
+			data-testid="responsive-image"
 		/>
 	);
 };

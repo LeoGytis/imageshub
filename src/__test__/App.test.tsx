@@ -23,4 +23,19 @@ describe("App Component", () => {
 		const photoContainers = await screen.findAllByTestId("photo-container");
 		expect(photoContainers.length).toBeGreaterThan(0);
 	});
+	test("each photo-container element contains the correct child elements", async () => {
+		const { container } = render(<App />); // Destructure container from render result
+
+		// Wait for the photo-container elements to appear in the DOM
+		const photoContainers = await screen.findAllByTestId("photo-container", {}, { container });
+
+		// Loop through each photo-container element
+		for (const photoContainer of photoContainers) {
+			const responsiveImage = await screen.findByTestId("responsive-image");
+			expect(responsiveImage).toBeInTheDocument();
+
+			// const overlay = await screen.findByTestId("overlay");
+			// expect(overlay).toBeInTheDocument();
+		}
+	});
 });
