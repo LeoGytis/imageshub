@@ -4,7 +4,7 @@ A dynamic image gallery utilizing the Flickr API.
 The project emphasizes responsive design principles to ensure optimal viewing across various devices and screen sizes.
 The project aims to deliver a visually appealing and user-friendly image gallery experience while prioritizing performance optimization, code reliability, and responsiveness across devices.
 
-# Features
+## Features
 
 -   Utilized Flickr API for fetching image data
 -   Implemented responsive design for optimal viewing across devices
@@ -12,6 +12,14 @@ The project aims to deliver a visually appealing and user-friendly image gallery
 -   Utilized TypeScript for code maintainability and efficiency
 -   Implemented lazy-loading for optimized page loading
 -   Incorporated responsive image solution for bandwidth optimization
+
+I wanted to explain why I chose bugs as the subject matter for our macro gallery app:
+
+Detail: Bugs offer intricate details perfect for macro photography, showcasing nature's beauty up close.
+
+Diversity: Bugs come in a vast array of species, each with its own unique characteristics, allowing us to highlight biodiversity.
+
+Task-specific: Different bugs perform specific roles in ecosystems, from pollination to pest control, showcasing the variety of tasks bugs undertake.
 
 ## Technologies Used
 
@@ -21,7 +29,15 @@ The project aims to deliver a visually appealing and user-friendly image gallery
 -   Jest
 -   React Testing Library
 
-## Available Scripts
+## Small Note
+
+I wanted to explain why I chose bugs for this image gallery project for Vinted.
+Bugs offer intricate details perfect for macro photography, showcasing nature's beauty up close.
+Bugs come in a vast array of species, each with its own unique characteristics, allowing us to highlight biodiversity.
+Different bugs perform specific roles in ecosystems (like Vinted), from pollination to pest control, showcasing the variety of tasks bugs undertake (like Vinted). 😊
+Different approach for bugs...
+
+## Available Script
 
 In the project directory, you can run:
 
