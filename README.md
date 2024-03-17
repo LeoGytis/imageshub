@@ -53,7 +53,7 @@ Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.
-You will also see any lint errors in the console
+You will also see any lint errors in the console.
 
 ### `npm test`
 
@@ -62,3 +62,9 @@ or
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.
+
+## API Guides
+
+-   Flickr API Documentation: https://www.flickr.com/services/api/
+-   Flickr API Garden: https://www.flickr.com/services/api/explore/flickr.galleries.getPhotos
+-   Tom Johnson Tutorial: https://idratherbewriting.com/learnapidoc/docapis_flickr_example.html
