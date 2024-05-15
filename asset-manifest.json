@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/LeoGytis/imged/static/css/main.a7436f79.css",
+    "main.js": "/LeoGytis/imged/static/js/main.9ba8ae8f.js",
+    "static/js/453.d8dae397.chunk.js": "/LeoGytis/imged/static/js/453.d8dae397.chunk.js",
+    "index.html": "/LeoGytis/imged/index.html",
+    "main.a7436f79.css.map": "/LeoGytis/imged/static/css/main.a7436f79.css.map",
+    "main.9ba8ae8f.js.map": "/LeoGytis/imged/static/js/main.9ba8ae8f.js.map",
+    "453.d8dae397.chunk.js.map": "/LeoGytis/imged/static/js/453.d8dae397.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a7436f79.css",
+    "static/js/main.9ba8ae8f.js"
+  ]
+}
