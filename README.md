@@ -1,4 +1,4 @@
-# Imged Project
+# ImagesHub Project
 
 A dynamic image gallery utilizing the Flickr API.
 The project emphasizes responsive design principles to ensure optimal viewing across various devices and screen sizes.

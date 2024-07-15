@@ -1,6 +1,6 @@
 {
-	"homepage": "https://leogytis.github.io/imged/",
-	"name": "imged",
+	"homepage": "https://leogytis.github.io/imageshub/",
+	"name": "imageshub",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
