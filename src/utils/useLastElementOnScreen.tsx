@@ -1,9 +1,10 @@
 import {useState, useEffect} from 'react';
 
 const useLastElementOnScreen = (targetSelector: string) => {
-	const [isNearExit, setIsNearExit] = useState<boolean>(false);
+	const [isOnScreen, setIsOnScreen] = useState<boolean>(false);
 
 	useEffect(() => {
+		const target = document.querySelector(targetSelector);
 		const options = {
 			root: null,
 			rootMargin: '50px',
@@ -11,12 +12,9 @@ const useLastElementOnScreen = (targetSelector: string) => {
 		};
 
 		const observer = new IntersectionObserver(([entry]) => {
-			// Check if the target element is within the viewport
-			setIsNearExit(entry.isIntersecting);
+			setIsOnScreen(entry.isIntersecting);
 		}, options);
 
-		// Select the target element
-		const target = document.querySelector(targetSelector);
 		if (target) {
 			observer.observe(target);
 		}
@@ -27,7 +25,7 @@ const useLastElementOnScreen = (targetSelector: string) => {
 		};
 	}, [targetSelector]);
 
-	return isNearExit;
+	return isOnScreen;
 };
 
 export default useLastElementOnScreen;
