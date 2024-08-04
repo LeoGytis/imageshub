@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import MediaQuery from "./utils/MediaQuery";
-import FavoriteIcon from "./components/FavoriteIcon";
-import LoaderComponent from "./components/LoaderComponent";
-import ResponsiveImage from "./components/ResponsiveImage";
-import ApiGetPhotos from "./utils/ApiGetPhotos";
-import { FavoriteButton, FavoritesComponent } from "./components/FavoritesComponent";
-import ScrollComponent from "./utils/ScrollComponent";
+import {useState, useEffect} from 'react';
+import MediaQuery from './utils/MediaQuery';
+import FavoriteIcon from './components/FavoriteIcon';
+import LoaderComponent from './components/LoaderComponent';
+import ResponsiveImage from './components/ResponsiveImage';
+import ApiGetPhotos from './utils/ApiGetPhotos';
+import {FavoriteButton, FavoritesComponent} from './components/FavoritesComponent';
+import ScrollComponent from './utils/ScrollComponent';
 
 export interface PhotoProps {
 	id: string;
@@ -21,12 +21,13 @@ function App() {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [favorites, toggleFavorite] = FavoritesComponent();
 	const [page, setPage] = useState<number>(1);
-	const { isMobile, isTablet, isDesktop } = MediaQuery();
+	const {isMobile, isTablet, isDesktop} = MediaQuery();
 	const perPage = () => {
 		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of photos per page
 	};
+	// const observer = new IntersectionObserver(callbackFunction, options)
 
-	ScrollComponent({ isLoading, setPage });
+	ScrollComponent({isLoading, setPage});
 
 	// Function to fetch photos from the API
 	const fetchPhotos = async () => {
@@ -40,7 +41,7 @@ function App() {
 				setPhotos((prevPhotos) => [...prevPhotos, ...photosData]);
 			}
 		} catch (error) {
-			console.error("Error fetching data:", error);
+			console.error('Error fetching data:', error);
 		} finally {
 			setIsLoading(false);
 		}
@@ -63,14 +64,14 @@ function App() {
 					<div className="overlay">
 						<div>
 							<h3>{photo.title}</h3>
-							<p>{photo.ownername}</p>{" "}
+							<p>{photo.ownername}</p>{' '}
 							<FavoriteButton
 								isFavorited={favorites[photo.id]}
 								onClick={() => toggleFavorite(photo.id)}
 							/>
 						</div>
 					</div>
-					{favorites[photo.id] ? <FavoriteIcon color={"#ffffff"} /> : null}
+					{favorites[photo.id] ? <FavoriteIcon color={'#ffffff'} /> : null}
 				</div>
 			))}
 			{isLoading && <LoaderComponent />}
