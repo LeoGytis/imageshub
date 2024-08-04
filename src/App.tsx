@@ -5,8 +5,7 @@ import LoaderComponent from './components/LoaderComponent';
 import ResponsiveImage from './components/ResponsiveImage';
 import ApiGetPhotos from './utils/ApiGetPhotos';
 import {FavoriteButton, FavoritesComponent} from './components/FavoritesComponent';
-import ScrollComponent from './utils/ScrollComponent';
-import useOnScreen from './utils/UseOnScreen';
+import useLastElementOnScreen from './utils/useLastElementOnScreen';
 
 export interface PhotoProps {
 	id: string;
@@ -26,8 +25,6 @@ function App() {
 	const perPage = () => {
 		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of photos per page
 	};
-
-	// ScrollComponent({isLoading, setPage});
 
 	// Function to fetch photos from the API
 	const fetchPhotos = async () => {
@@ -51,16 +48,13 @@ function App() {
 		fetchPhotos();
 	}, [page]);
 
-	const isOnScreen = useOnScreen();
+	const isLoaderVisible = useLastElementOnScreen('.loading-indicator');
 
-	// Function to handle loading more photos when scrolled to the bottom
 	useEffect(() => {
-		console.log('🚀 : isOnScreen-->', isOnScreen);
-		if (isOnScreen && !isLoading) {
+		if (isLoaderVisible && !isLoading) {
 			setPage((prevPage) => prevPage + 1);
 		}
-	}, [isOnScreen, isLoading]);
-
+	}, [isLoaderVisible, isLoading]);
 	return (
 		<div className="gallery-container">
 			{photos.map((photo) => (
@@ -85,6 +79,7 @@ function App() {
 				</div>
 			))}
 			{isLoading && <LoaderComponent />}
+			<div className="loading-indicator" />
 		</div>
 	);
 }
