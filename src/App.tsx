@@ -6,6 +6,7 @@ import ResponsiveImage from './components/ResponsiveImage';
 import ApiGetPhotos from './utils/ApiGetPhotos';
 import {FavoriteButton, FavoritesComponent} from './components/FavoritesComponent';
 import ScrollComponent from './utils/ScrollComponent';
+import useOnScreen from './utils/UseOnScreen';
 
 export interface PhotoProps {
 	id: string;
@@ -25,9 +26,8 @@ function App() {
 	const perPage = () => {
 		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of photos per page
 	};
-	// const observer = new IntersectionObserver(callbackFunction, options)
 
-	ScrollComponent({isLoading, setPage});
+	// ScrollComponent({isLoading, setPage});
 
 	// Function to fetch photos from the API
 	const fetchPhotos = async () => {
@@ -50,6 +50,16 @@ function App() {
 	useEffect(() => {
 		fetchPhotos();
 	}, [page]);
+
+	const isOnScreen = useOnScreen();
+
+	// Function to handle loading more photos when scrolled to the bottom
+	useEffect(() => {
+		console.log('🚀 : isOnScreen-->', isOnScreen);
+		if (isOnScreen && !isLoading) {
+			setPage((prevPage) => prevPage + 1);
+		}
+	}, [isOnScreen, isLoading]);
 
 	return (
 		<div className="gallery-container">
