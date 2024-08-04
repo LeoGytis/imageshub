@@ -20,23 +20,18 @@ function App() {
 	const [photos, setPhotos] = useState<PhotoProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [favorites, toggleFavorite] = FavoritesComponent();
+	const isLastElement = useLastElementOnScreen('.loader-container');
 	const [page, setPage] = useState<number>(1);
 	const {isMobile, isTablet, isDesktop} = MediaQuery();
 	const perPage = () => {
-		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of photos per page
+		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of photos per page depending on screen size
 	};
 
-	// Function to fetch photos from the API
 	const fetchPhotos = async () => {
 		setIsLoading(true);
 		try {
 			const photosData = await ApiGetPhotos(page, perPage());
-			// Prevent duplication of photos on the initial page load
-			if (page === 1) {
-				setPhotos([...photosData]);
-			} else {
-				setPhotos((prevPhotos) => [...prevPhotos, ...photosData]);
-			}
+			setPhotos((prevPhotos) => (page === 1 ? photosData : [...prevPhotos, ...photosData]));
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		} finally {
@@ -48,13 +43,11 @@ function App() {
 		fetchPhotos();
 	}, [page]);
 
-	const isLoaderVisible = useLastElementOnScreen('.loader-container');
-
 	useEffect(() => {
-		if (isLoaderVisible && !isLoading) {
+		if (isLastElement && !isLoading) {
 			setPage((prevPage) => prevPage + 1);
 		}
-	}, [isLoaderVisible, isLoading]);
+	}, [isLastElement]);
 
 	return (
 		<div className="gallery-container">

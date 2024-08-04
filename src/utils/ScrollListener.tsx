@@ -1,11 +1,11 @@
-import { useEffect, useCallback } from "react";
+import {useEffect, useCallback} from 'react';
 
 interface ScrollOptionsProps {
 	isLoading: boolean;
 	setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const ScrollComponent = ({ isLoading, setPage }: ScrollOptionsProps) => {
+const ScrollListener = ({isLoading, setPage}: ScrollOptionsProps) => {
 	const handleScroll = useCallback(() => {
 		const windowHeight = window.innerHeight;
 		const documentHeight = document.documentElement.scrollHeight;
@@ -18,12 +18,12 @@ const ScrollComponent = ({ isLoading, setPage }: ScrollOptionsProps) => {
 	}, [isLoading, setPage]);
 
 	useEffect(() => {
-		window.addEventListener("scroll", handleScroll);
+		window.addEventListener('scroll', handleScroll);
 		return () => {
-			window.removeEventListener("scroll", handleScroll);
+			window.removeEventListener('scroll', handleScroll);
 		};
 	}, [handleScroll]);
 	return null;
 };
 
-export default ScrollComponent;
+export default ScrollListener;
