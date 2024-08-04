@@ -48,13 +48,14 @@ function App() {
 		fetchPhotos();
 	}, [page]);
 
-	const isLoaderVisible = useLastElementOnScreen('.loading-indicator');
+	const isLoaderVisible = useLastElementOnScreen('.loader-container');
 
 	useEffect(() => {
 		if (isLoaderVisible && !isLoading) {
 			setPage((prevPage) => prevPage + 1);
 		}
 	}, [isLoaderVisible, isLoading]);
+
 	return (
 		<div className="gallery-container">
 			{photos.map((photo) => (
@@ -78,8 +79,7 @@ function App() {
 					{favorites[photo.id] ? <FavoriteIcon color={'#ffffff'} /> : null}
 				</div>
 			))}
-			{isLoading && <LoaderComponent />}
-			<div className="loading-indicator" />
+			<div className="loader-container">{isLoading && <LoaderComponent />}</div>
 		</div>
 	);
 }
