@@ -5,7 +5,7 @@ import useLastElementOnScreen from './utils/useLastElementOnScreen';
 import ImageContainer from './components/ImageContainer';
 import ApieGetImages from './utils/ApiGetImages';
 
-export interface PhotoProps {
+export interface ImageProps {
 	id: string;
 	farm: number;
 	server: string;
@@ -15,7 +15,7 @@ export interface PhotoProps {
 }
 
 function App() {
-	const [images, setImages] = useState<PhotoProps[]>([]);
+	const [images, setImages] = useState<ImageProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const isLastElement = useLastElementOnScreen('.loader-container');
 	const [page, setPage] = useState<number>(1);

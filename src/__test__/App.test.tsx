@@ -1,6 +1,5 @@
 import {render, screen} from '@testing-library/react';
-import App, {PhotoProps} from '../App';
-import ApiGetPhotos from '../utils/ApiGetImages';
+import App from '../App';
 
 describe('App Component', () => {
 	test('renders without crashing', () => {

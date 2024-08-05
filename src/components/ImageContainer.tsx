@@ -2,11 +2,11 @@ import React from 'react';
 import ResponsiveImage from './ResponsiveImage';
 import ImageOverlay from './ImageOverlay';
 import FavoriteIcon from './FavoriteIcon';
-import {PhotoProps} from '../App';
+import {ImageProps} from '../App';
 import {FavoritesComponent} from './FavoritesComponent';
 import MediaQuery from '../utils/MediaQuery';
 
-const ImageContainer = ({image}: {image: PhotoProps}) => {
+const ImageContainer = ({image}: {image: ImageProps}) => {
 	const {isMobile, isTablet, isDesktop} = MediaQuery();
 	const [favorites, toggleFavorite] = FavoritesComponent();
 

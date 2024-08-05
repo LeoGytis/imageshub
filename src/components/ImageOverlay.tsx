@@ -1,9 +1,9 @@
 import React from 'react';
-import {PhotoProps} from '../App';
 import {FavoriteButton} from './FavoritesComponent';
+import {ImageProps} from '../App';
 
 interface ImageOverlayProps {
-	photo: PhotoProps;
+	photo: ImageProps;
 	favorites: Record<string, boolean>;
 	toggleFavorite: (photoId: string) => void;
 }

@@ -1,17 +1,17 @@
-import { PhotoProps } from "../App";
+import {ImageProps} from '../App';
 
 interface ResponsiveImageProps {
-	photo: PhotoProps;
+	photo: ImageProps;
 	isMobile: boolean;
 	isTablet: boolean;
 }
 
-const ResponsiveImage = ({ photo, isMobile, isTablet }: ResponsiveImageProps) => {
+const ResponsiveImage = ({photo, isMobile, isTablet}: ResponsiveImageProps) => {
 	const baseImageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}`;
 
-	const smallSize = isMobile ? "q=low" : "q=low";
-	const mediumSize = isTablet ? "q=medium" : "q=low";
-	const largeSize = "q=high";
+	const smallSize = isMobile ? 'q=low' : 'q=low';
+	const mediumSize = isTablet ? 'q=medium' : 'q=low';
+	const largeSize = 'q=high';
 
 	// Provide multiple image sources with different resolutions
 	const imageSrcSet = `${baseImageUrl}.jpg?${smallSize} 300w,
