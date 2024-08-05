@@ -1,0 +1,42 @@
+.overlay {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	border-radius: 2%;
+	@media (max-width: 1024px) {
+		display: none;
+	}
+}
+
+.overlay > div {
+	position: relative;
+	text-align: center;
+}
+
+.overlay h3 {
+	font-weight: 700;
+	margin: 0;
+}
+
+.overlay h3::after {
+	content: '';
+	display: block;
+	width: 80px;
+	border-bottom: 2px solid white;
+	margin: 5px auto;
+}
+
+.overlay p {
+	font-weight: 400;
+	font-style: italic;
+	margin: 0;
+}
