@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react';
-import MediaQuery from './utils/MediaQuery';
 import LoaderComponent from './components/LoaderComponent';
 import useLastElementOnScreen from './utils/useLastElementOnScreen';
 import ImageContainer from './components/ImageContainer';
 import ApieGetImages from './utils/ApiGetImages';
+import useMediaQuery from './utils/useMediaQuery';
 
 export interface ImageProps {
 	id: string;
@@ -19,7 +19,7 @@ function App() {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const isLastElement = useLastElementOnScreen('.loader-container');
 	const [page, setPage] = useState<number>(1);
-	const {isTablet, isDesktop} = MediaQuery();
+	const {isTablet, isDesktop} = useMediaQuery();
 	const imagesPerPage = () => (isDesktop() ? 12 : isTablet() ? 8 : 4);
 
 	const fetchImages = async () => {
