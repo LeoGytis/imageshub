@@ -15,7 +15,7 @@ export interface PhotoProps {
 }
 
 function App() {
-	const [photos, setImages] = useState<PhotoProps[]>([]);
+	const [images, setImages] = useState<PhotoProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const isLastElement = useLastElementOnScreen('.loader-container');
 	const [page, setPage] = useState<number>(1);
@@ -48,8 +48,8 @@ function App() {
 
 	return (
 		<div className="gallery-container">
-			{photos.map((photo) => (
-				<ImageContainer photo={photo} />
+			{images.map((image) => (
+				<ImageContainer image={image} />
 			))}
 			<div className="loader-container">{isLoading && <LoaderComponent />}</div>
 		</div>

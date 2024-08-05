@@ -6,20 +6,20 @@ import {PhotoProps} from '../App';
 import {FavoritesComponent} from './FavoritesComponent';
 import MediaQuery from '../utils/MediaQuery';
 
-const ImageContainer = ({photo}: {photo: PhotoProps}) => {
+const ImageContainer = ({image}: {image: PhotoProps}) => {
 	const {isMobile, isTablet, isDesktop} = MediaQuery();
 	const [favorites, toggleFavorite] = FavoritesComponent();
 
 	return (
 		<div
-			onClick={!isDesktop() ? () => toggleFavorite(photo.id) : undefined}
+			onClick={!isDesktop() ? () => toggleFavorite(image.id) : undefined}
 			className="photo-container"
 			data-testid="photo-container"
-			key={photo.id}
+			key={image.id}
 		>
-			<ResponsiveImage photo={photo} isMobile={isMobile()} isTablet={isTablet()} />
-			<ImageOverlay photo={photo} favorites={favorites} toggleFavorite={toggleFavorite} />
-			{favorites[photo.id] ? <FavoriteIcon color={'#ffffff'} /> : null}
+			<ResponsiveImage photo={image} isMobile={isMobile()} isTablet={isTablet()} />
+			<ImageOverlay photo={image} favorites={favorites} toggleFavorite={toggleFavorite} />
+			{favorites[image.id] ? <FavoriteIcon color={'#ffffff'} /> : null}
 		</div>
 	);
 };
