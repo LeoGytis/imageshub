@@ -12,7 +12,6 @@
 		height: calc((100vh - 80px) / 3);
 		flex: 1 1 100%;
 	}
-	border: 3px solid red;
 }
 
 .image-container::after {
@@ -32,6 +31,6 @@
 	box-shadow: 2px 2px 0px 0px #d4d6d5;
 }
 
-.image-container:hover {
+.image-container:hover .overlay {
 	opacity: 1;
 }
