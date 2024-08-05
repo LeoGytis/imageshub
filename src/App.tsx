@@ -15,20 +15,20 @@ export interface PhotoProps {
 }
 
 function App() {
-	const [photos, setPhotos] = useState<PhotoProps[]>([]);
+	const [photos, setImages] = useState<PhotoProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const isLastElement = useLastElementOnScreen('.loader-container');
 	const [page, setPage] = useState<number>(1);
-	const {isMobile, isTablet, isDesktop} = MediaQuery();
-	const perPage = () => {
-		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of photos per page depending on screen size
+	const {isTablet, isDesktop} = MediaQuery();
+	const imagesPerPage = () => {
+		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of images per page depending on screen size
 	};
 
-	const fetchPhotos = async () => {
+	const fetchImages = async () => {
 		setIsLoading(true);
 		try {
-			const photosData = await ApiGetPhotos(page, perPage());
-			setPhotos((prevPhotos) => (page === 1 ? photosData : [...prevPhotos, ...photosData]));
+			const photosData = await ApiGetPhotos(page, imagesPerPage());
+			setImages((prevPhotos) => (page === 1 ? photosData : [...prevPhotos, ...photosData]));
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		} finally {
@@ -37,7 +37,7 @@ function App() {
 	};
 
 	useEffect(() => {
-		fetchPhotos();
+		fetchImages();
 	}, [page]);
 
 	useEffect(() => {
