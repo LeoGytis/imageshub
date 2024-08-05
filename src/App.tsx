@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react';
 import MediaQuery from './utils/MediaQuery';
 import LoaderComponent from './components/LoaderComponent';
-import ApiGetPhotos from './utils/ApiGetPhotos';
 import useLastElementOnScreen from './utils/useLastElementOnScreen';
 import ImageContainer from './components/ImageContainer';
+import ApieGetImages from './utils/ApiGetImages';
 
 export interface PhotoProps {
 	id: string;
@@ -27,7 +27,7 @@ function App() {
 	const fetchImages = async () => {
 		setIsLoading(true);
 		try {
-			const imagesData = await ApiGetPhotos(page, imagesPerPage());
+			const imagesData = await ApieGetImages(page, imagesPerPage());
 			setImages((prevImages) => (page === 1 ? imagesData : [...prevImages, ...imagesData]));
 		} catch (error) {
 			console.error('Error fetching data:', error);
