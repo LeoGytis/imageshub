@@ -27,8 +27,8 @@ function App() {
 	const fetchImages = async () => {
 		setIsLoading(true);
 		try {
-			const photosData = await ApiGetPhotos(page, imagesPerPage());
-			setImages((prevPhotos) => (page === 1 ? photosData : [...prevPhotos, ...photosData]));
+			const imagesData = await ApiGetPhotos(page, imagesPerPage());
+			setImages((prevImages) => (page === 1 ? imagesData : [...prevImages, ...imagesData]));
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		} finally {
