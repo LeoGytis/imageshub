@@ -21,7 +21,7 @@ function App() {
 	const [page, setPage] = useState<number>(1);
 	const {isTablet, isDesktop} = MediaQuery();
 	const imagesPerPage = () => {
-		return isDesktop() ? 12 : isTablet() ? 8 : 4; // Number of images per page depending on screen size
+		return isDesktop() ? 12 : isTablet() ? 8 : 4;
 	};
 
 	const fetchImages = async () => {
