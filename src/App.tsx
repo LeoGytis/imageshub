@@ -6,6 +6,7 @@ import ResponsiveImage from './components/ResponsiveImage';
 import ApiGetPhotos from './utils/ApiGetPhotos';
 import {FavoriteButton, FavoritesComponent} from './components/FavoritesComponent';
 import useLastElementOnScreen from './utils/useLastElementOnScreen';
+import ImageOverlay from './components/ImageOverlay';
 
 export interface PhotoProps {
 	id: string;
@@ -59,16 +60,7 @@ function App() {
 					key={photo.id}
 				>
 					<ResponsiveImage photo={photo} isMobile={isMobile()} isTablet={isTablet()} />
-					<div className="overlay">
-						<div>
-							<h3>{photo.title}</h3>
-							<p>{photo.ownername}</p>{' '}
-							<FavoriteButton
-								isFavorited={favorites[photo.id]}
-								onClick={() => toggleFavorite(photo.id)}
-							/>
-						</div>
-					</div>
+					<ImageOverlay photo={photo} favorites={favorites} toggleFavorite={toggleFavorite} />
 					{favorites[photo.id] ? <FavoriteIcon color={'#ffffff'} /> : null}
 				</div>
 			))}
