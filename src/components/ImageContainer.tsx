@@ -4,17 +4,10 @@ import ImageOverlay from './ImageOverlay';
 import FavoriteIcon from './FavoriteIcon';
 import {PhotoProps} from '../App';
 import {FavoritesComponent} from './FavoritesComponent';
+import MediaQuery from '../utils/MediaQuery';
 
-interface ImageContainerProps {
-	photo: PhotoProps;
-	isDesktop: () => boolean;
-	isMobile: () => boolean;
-	isTablet: () => boolean;
-	// favorites: {[key: number]: boolean};
-	// toggleFavorite: (id: number) => void;
-}
-
-const ImageContainer = ({photo, isDesktop, isMobile, isTablet}: ImageContainerProps) => {
+const ImageContainer = ({photo}: {photo: PhotoProps}) => {
+	const {isMobile, isTablet, isDesktop} = MediaQuery();
 	const [favorites, toggleFavorite] = FavoritesComponent();
 
 	return (

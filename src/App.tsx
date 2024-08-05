@@ -1,12 +1,9 @@
 import {useState, useEffect} from 'react';
 import MediaQuery from './utils/MediaQuery';
-import FavoriteIcon from './components/FavoriteIcon';
 import LoaderComponent from './components/LoaderComponent';
-import ResponsiveImage from './components/ResponsiveImage';
 import ApiGetPhotos from './utils/ApiGetPhotos';
-import {FavoriteButton, FavoritesComponent} from './components/FavoritesComponent';
 import useLastElementOnScreen from './utils/useLastElementOnScreen';
-import ImageOverlay from './components/ImageOverlay';
+import ImageContainer from './components/ImageContainer';
 
 export interface PhotoProps {
 	id: string;
@@ -20,7 +17,6 @@ export interface PhotoProps {
 function App() {
 	const [photos, setPhotos] = useState<PhotoProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
-	const [favorites, toggleFavorite] = FavoritesComponent();
 	const isLastElement = useLastElementOnScreen('.loader-container');
 	const [page, setPage] = useState<number>(1);
 	const {isMobile, isTablet, isDesktop} = MediaQuery();
@@ -53,16 +49,7 @@ function App() {
 	return (
 		<div className="gallery-container">
 			{photos.map((photo) => (
-				<div
-					onClick={!isDesktop() ? () => toggleFavorite(photo.id) : undefined}
-					className="photo-container"
-					data-testid="photo-container"
-					key={photo.id}
-				>
-					<ResponsiveImage photo={photo} isMobile={isMobile()} isTablet={isTablet()} />
-					<ImageOverlay photo={photo} favorites={favorites} toggleFavorite={toggleFavorite} />
-					{favorites[photo.id] ? <FavoriteIcon color={'#ffffff'} /> : null}
-				</div>
+				<ImageContainer photo={photo} />
 			))}
 			<div className="loader-container">{isLoading && <LoaderComponent />}</div>
 		</div>
