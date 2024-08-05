@@ -17,8 +17,8 @@ const ImageContainer = ({image}: {image: ImageProps}) => {
 			data-testid="photo-container"
 			key={image.id}
 		>
-			<ResponsiveImage photo={image} isMobile={isMobile()} isTablet={isTablet()} />
-			<ImageOverlay photo={image} favorites={favorites} toggleFavorite={toggleFavorite} />
+			<ResponsiveImage image={image} isMobile={isMobile()} isTablet={isTablet()} />
+			<ImageOverlay image={image} favorites={favorites} toggleFavorite={toggleFavorite} />
 			{favorites[image.id] ? <FavoriteIcon color={'#ffffff'} /> : null}
 		</div>
 	);

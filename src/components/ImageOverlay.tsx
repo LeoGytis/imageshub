@@ -3,18 +3,18 @@ import {FavoriteButton} from './FavoritesComponent';
 import {ImageProps} from '../App';
 
 interface ImageOverlayProps {
-	photo: ImageProps;
+	image: ImageProps;
 	favorites: Record<string, boolean>;
-	toggleFavorite: (photoId: string) => void;
+	toggleFavorite: (imageId: string) => void;
 }
 
-const ImageOverlay = ({photo, favorites, toggleFavorite}: ImageOverlayProps) => {
+const ImageOverlay = ({image, favorites, toggleFavorite}: ImageOverlayProps) => {
 	return (
 		<div className="overlay">
 			<div>
-				<h3>{photo.title}</h3>
-				<p>{photo.ownername}</p>
-				<FavoriteButton isFavorited={favorites[photo.id]} onClick={() => toggleFavorite(photo.id)} />
+				<h3>{image.title}</h3>
+				<p>{image.ownername}</p>
+				<FavoriteButton isFavorited={favorites[image.id]} onClick={() => toggleFavorite(image.id)} />
 			</div>
 		</div>
 	);

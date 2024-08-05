@@ -1,13 +1,13 @@
 import {ImageProps} from '../App';
 
 interface ResponsiveImageProps {
-	photo: ImageProps;
+	image: ImageProps;
 	isMobile: boolean;
 	isTablet: boolean;
 }
 
-const ResponsiveImage = ({photo, isMobile, isTablet}: ResponsiveImageProps) => {
-	const baseImageUrl = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}`;
+const ResponsiveImage = ({image, isMobile, isTablet}: ResponsiveImageProps) => {
+	const baseImageUrl = `https://farm${image.farm}.staticflickr.com/${image.server}/${image.id}_${image.secret}`;
 
 	const smallSize = isMobile ? 'q=low' : 'q=low';
 	const mediumSize = isTablet ? 'q=medium' : 'q=low';
@@ -20,7 +20,7 @@ const ResponsiveImage = ({photo, isMobile, isTablet}: ResponsiveImageProps) => {
 
 	return (
 		<img
-			alt={photo.title}
+			alt={image.title}
 			srcSet={imageSrcSet}
 			sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
 			loading="lazy"
