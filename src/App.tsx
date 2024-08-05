@@ -20,9 +20,7 @@ function App() {
 	const isLastElement = useLastElementOnScreen('.loader-container');
 	const [page, setPage] = useState<number>(1);
 	const {isTablet, isDesktop} = MediaQuery();
-	const imagesPerPage = () => {
-		return isDesktop() ? 12 : isTablet() ? 8 : 4;
-	};
+	const imagesPerPage = () => (isDesktop() ? 12 : isTablet() ? 8 : 4);
 
 	const fetchImages = async () => {
 		setIsLoading(true);
