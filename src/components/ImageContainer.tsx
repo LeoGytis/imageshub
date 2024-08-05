@@ -13,8 +13,8 @@ const ImageContainer = ({image}: {image: ImageProps}) => {
 	return (
 		<div
 			onClick={!isDesktop() ? () => toggleFavorite(image.id) : undefined}
-			className="photo-container"
-			data-testid="photo-container"
+			className="image-container"
+			data-testid="image-container"
 			key={image.id}
 		>
 			<ResponsiveImage image={image} isMobile={isMobile()} isTablet={isTablet()} />
