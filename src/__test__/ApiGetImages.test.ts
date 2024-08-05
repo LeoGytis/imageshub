@@ -1,7 +1,7 @@
-import ApiGetPhotos from '../utils/ApiGetImages';
+import ApiGetImages from '../utils/ApiGetImages';
 import fetchMock from 'jest-fetch-mock';
 
-xdescribe('ApiGetPhotos', () => {
+xdescribe('ApiGetImages', () => {
 	beforeEach(() => {
 		fetchMock.resetMocks();
 	});
@@ -11,13 +11,13 @@ xdescribe('ApiGetPhotos', () => {
 		const errorMessage = 'API Error';
 		fetchMock.mockRejectOnce(new Error(errorMessage));
 
-		const photos = await ApiGetPhotos(1, 10);
+		const images = await ApiGetImages(1, 10);
 
 		expect(fetchMock).toHaveBeenCalledTimes(1);
 		expect(fetchMock).toHaveBeenCalledWith(expect.any(String));
 
 		// The function should return an empty array if an error occurs
-		expect(photos).toEqual([]);
+		expect(images).toEqual([]);
 
 		// Check if the error message matches the expected message
 		expect(console.error).toHaveBeenCalledWith('Error fetching data:', expect.any(Error));

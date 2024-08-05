@@ -12,20 +12,20 @@ describe('App Component', () => {
 		expect(loader).toBeInTheDocument();
 	});
 
-	test('renders correct number of image-container elements based on the photos state', async () => {
+	test('renders correct number of image-container elements based on the images state', async () => {
 		render(<App />);
-		const photoContainers = await screen.findAllByTestId('image-container');
-		expect(photoContainers.length).toBeGreaterThan(0);
+		const imageContainers = await screen.findAllByTestId('image-container');
+		expect(imageContainers.length).toBeGreaterThan(0);
 	});
 
 	xtest('each image-container element contains the correct child elements', async () => {
 		const {container} = render(<App />);
 
 		// Wait for the image-container elements to appear in the DOM
-		const photoContainers = await screen.findAllByTestId('image-container', {}, {container});
+		const imageContainers = await screen.findAllByTestId('image-container', {}, {container});
 
 		// Loop through each image-container element
-		for (const photoContainer of photoContainers) {
+		for (const imageContainer of imageContainers) {
 			const responsiveImage = await screen.findByTestId('responsive-image');
 			expect(responsiveImage).toBeInTheDocument();
 

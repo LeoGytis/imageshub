@@ -1,27 +1,27 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from 'react';
 
-const FavoritesComponent = (): [Record<string, boolean>, (photoId: string) => void] => {
-	const initialFavorites: Record<string, boolean> = JSON.parse(localStorage.getItem("favorites") || "{}");
+const FavoritesComponent = (): [Record<string, boolean>, (imageId: string) => void] => {
+	const initialFavorites: Record<string, boolean> = JSON.parse(localStorage.getItem('favorites') || '{}');
 	const [favorites, setFavorites] = useState<Record<string, boolean>>(initialFavorites);
 
 	useEffect(() => {
-		localStorage.setItem("favorites", JSON.stringify(favorites));
+		localStorage.setItem('favorites', JSON.stringify(favorites));
 	}, [favorites]);
 
-	const toggleFavorite = (photoId: string): void => {
+	const toggleFavorite = (imageId: string): void => {
 		setFavorites((prevFavorites) => ({
 			...prevFavorites,
-			[photoId]: !prevFavorites[photoId],
+			[imageId]: !prevFavorites[imageId],
 		}));
 	};
 
 	return [favorites, toggleFavorite];
 };
 
-const FavoriteButton: React.FC<{ isFavorited: boolean; onClick: () => void }> = ({ isFavorited, onClick }) => (
+const FavoriteButton: React.FC<{isFavorited: boolean; onClick: () => void}> = ({isFavorited, onClick}) => (
 	<button onClick={onClick} className="favorite-button">
-		{isFavorited ? "Unfavorite" : "Favorite"}
+		{isFavorited ? 'Unfavorite' : 'Favorite'}
 	</button>
 );
 
-export { FavoritesComponent, FavoriteButton };
+export {FavoritesComponent, FavoriteButton};
