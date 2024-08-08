@@ -1,9 +1,9 @@
 import ResponsiveImage from './ResponsiveImage';
 import ImageOverlay from './ImageOverlay';
 import FavoriteIcon from './FavoriteIcon';
-import {ImageProps} from '../App';
 import {FavoritesComponent} from './FavoritesComponent';
 import useMediaQuery from '../utils/useMediaQuery';
+import {ImageProps} from '../utils/types';
 
 const ImageList = ({images}: {images: ImageProps[]}) => {
 	const {isMobile, isTablet, isDesktop} = useMediaQuery();

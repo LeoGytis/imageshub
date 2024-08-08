@@ -1,21 +1,23 @@
 import {useState, useEffect} from 'react';
-import {ImageProps} from '../App';
-import useMediaQuery from '../utils/useMediaQuery';
-import useLastElementOnScreen from '../utils/useLastElementOnScreen';
-import ApieGetImages from '../utils/ApiGetImages';
+import {ImageProps} from '../utils/types';
+import ApiGetImages from '../utils/ApiGetImages';
 
-const useFetchImages = () => {
+interface UseFetchImagesProps {
+	isTablet: boolean;
+	isDesktop: boolean;
+	isLastElement: boolean;
+}
+
+const useFetchImages = ({isTablet, isDesktop, isLastElement}: UseFetchImagesProps) => {
 	const [images, setImages] = useState<ImageProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [page, setPage] = useState<number>(1);
-	const {isTablet, isDesktop} = useMediaQuery();
-	const isLastElement = useLastElementOnScreen('.loader-container');
-	const imagesPerPage = () => (isDesktop() ? 12 : isTablet() ? 8 : 4);
+	const imagesPerPage = isDesktop ? 12 : isTablet ? 8 : 4;
 
 	const fetchImages = async () => {
 		setIsLoading(true);
 		try {
-			const imagesData = await ApieGetImages(page, imagesPerPage());
+			const imagesData = await ApiGetImages(page, imagesPerPage);
 			setImages((prevImages) => (page === 1 ? imagesData : [...prevImages, ...imagesData]));
 		} catch (error) {
 			console.error('Error fetching data:', error);

@@ -1,4 +1,4 @@
-import {ImageProps} from '../App';
+import {ImageProps} from '../utils/types';
 
 interface ResponsiveImageProps {
 	image: ImageProps;
