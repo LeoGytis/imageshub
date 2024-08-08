@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react';
 import LoaderComponent from './components/LoaderComponent';
 import useLastElementOnScreen from './utils/useLastElementOnScreen';
-import ImageContainer from './components/ImageContainer';
 import ApieGetImages from './utils/ApiGetImages';
 import useMediaQuery from './utils/useMediaQuery';
+import ImageList from './components/ImageList';
 
 export interface ImageProps {
 	id: string;
@@ -17,10 +17,10 @@ export interface ImageProps {
 function App() {
 	const [images, setImages] = useState<ImageProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
-	const isLastElement = useLastElementOnScreen('.loader-container');
 	const [page, setPage] = useState<number>(1);
 	const {isTablet, isDesktop} = useMediaQuery();
 	const imagesPerPage = () => (isDesktop() ? 12 : isTablet() ? 8 : 4);
+	const isLastElement = useLastElementOnScreen('.loader-container');
 
 	const fetchImages = async () => {
 		setIsLoading(true);
@@ -46,9 +46,7 @@ function App() {
 
 	return (
 		<div className="gallery-container">
-			{images.map((image) => (
-				<ImageContainer image={image} />
-			))}
+			<ImageList images={images} />
 			<div className="loader-container">{isLoading && <LoaderComponent />}</div>
 		</div>
 	);
