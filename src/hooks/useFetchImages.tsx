@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import {ImageProps} from '../utils/types';
-import ApiGetImages from '../utils/ApiGetImages';
+import apiGetImages from '../utils/ApiGetImages';
 
 interface UseFetchImagesProps {
 	isTablet: boolean;
@@ -17,7 +17,7 @@ const useFetchImages = ({isTablet, isDesktop, isLastElement}: UseFetchImagesProp
 	const fetchImages = async () => {
 		setIsLoading(true);
 		try {
-			const imagesData = await ApiGetImages(page, imagesPerPage);
+			const imagesData = await apiGetImages(page, imagesPerPage);
 			setImages((prevImages) => (page === 1 ? imagesData : [...prevImages, ...imagesData]));
 		} catch (error) {
 			console.error('Error fetching data:', error);

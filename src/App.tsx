@@ -1,11 +1,11 @@
 import LoaderComponent from './components/LoaderComponent';
 import ImageList from './components/ImageList';
-import useMediaQuery from './utils/useMediaQuery';
 import useFetchImages from './hooks/useFetchImages';
 import useLastElementOnScreen from './hooks/useLastElementOnScreen';
+import MediaQuery from './utils/MediaQuery';
 
 function App() {
-	const {isTablet, isDesktop} = useMediaQuery();
+	const {isTablet, isDesktop} = MediaQuery();
 	const isLastElement = useLastElementOnScreen('.loader-container');
 
 	const {images, isLoading} = useFetchImages({

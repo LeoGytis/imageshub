@@ -1,4 +1,4 @@
-import useMediaQuery from '../utils/useMediaQuery';
+import MediaQuery from '../utils/MediaQuery';
 
 describe('MediaQuery', () => {
 	let mediaQuery: any;
@@ -10,7 +10,7 @@ describe('MediaQuery', () => {
 			value: 1025, // Mock desktop width
 		});
 
-		mediaQuery = useMediaQuery();
+		mediaQuery = MediaQuery();
 	});
 
 	it('should detect desktop mode', () => {

@@ -1,4 +1,4 @@
-const useMediaQuery = () => {
+const MediaQuery = () => {
 	let activeMode = '';
 
 	const updateScreenSize = () => {
@@ -26,4 +26,4 @@ const useMediaQuery = () => {
 	};
 };
 
-export default useMediaQuery;
+export default MediaQuery;
