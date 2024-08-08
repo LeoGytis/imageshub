@@ -29,14 +29,6 @@ Task-specific: Different bugs perform specific roles in ecosystems, from pollina
 -   Jest
 -   React Testing Library
 
-## Small Note
-
-I wanted to explain why I chose bugs for this image gallery project for Vinted.
-Bugs offer intricate details perfect for macro photography, showcasing nature's beauty up close.
-Bugs come in a vast array of species, each with its own unique characteristics, allowing us to highlight biodiversity.
-Different bugs perform specific roles in ecosystems (like Vinted), from pollination to pest control, showcasing the variety of tasks bugs undertake (like Vinted). 😊
-Different approach for bugs...
-
 ## Available Script
 
 In the project directory, you can run:
