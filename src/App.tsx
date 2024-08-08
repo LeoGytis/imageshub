@@ -4,6 +4,7 @@ import useLastElementOnScreen from './utils/useLastElementOnScreen';
 import ApieGetImages from './utils/ApiGetImages';
 import useMediaQuery from './utils/useMediaQuery';
 import ImageList from './components/ImageList';
+import useFetchImages from './components/useFetchImages';
 
 export interface ImageProps {
 	id: string;
@@ -15,34 +16,36 @@ export interface ImageProps {
 }
 
 function App() {
-	const [images, setImages] = useState<ImageProps[]>([]);
-	const [isLoading, setIsLoading] = useState<boolean>(true);
-	const [page, setPage] = useState<number>(1);
-	const {isTablet, isDesktop} = useMediaQuery();
-	const imagesPerPage = () => (isDesktop() ? 12 : isTablet() ? 8 : 4);
-	const isLastElement = useLastElementOnScreen('.loader-container');
+	// const [images, setImages] = useState<ImageProps[]>([]);
+	// const [isLoading, setIsLoading] = useState<boolean>(true);
+	// const [page, setPage] = useState<number>(1);
+	// const {isTablet, isDesktop} = useMediaQuery();
+	// const imagesPerPage = () => (isDesktop() ? 12 : isTablet() ? 8 : 4);
+	// const isLastElement = useLastElementOnScreen('.loader-container');
 
-	const fetchImages = async () => {
-		setIsLoading(true);
-		try {
-			const imagesData = await ApieGetImages(page, imagesPerPage());
-			setImages((prevImages) => (page === 1 ? imagesData : [...prevImages, ...imagesData]));
-		} catch (error) {
-			console.error('Error fetching data:', error);
-		} finally {
-			setIsLoading(false);
-		}
-	};
+	// const fetchImages = async () => {
+	// 	setIsLoading(true);
+	// 	try {
+	// 		const imagesData = await ApieGetImages(page, imagesPerPage());
+	// 		setImages((prevImages) => (page === 1 ? imagesData : [...prevImages, ...imagesData]));
+	// 	} catch (error) {
+	// 		console.error('Error fetching data:', error);
+	// 	} finally {
+	// 		setIsLoading(false);
+	// 	}
+	// };
 
-	useEffect(() => {
-		fetchImages();
-	}, [page]);
+	// useEffect(() => {
+	// 	fetchImages();
+	// }, [page]);
 
-	useEffect(() => {
-		if (isLastElement && !isLoading) {
-			setPage((prevPage) => prevPage + 1);
-		}
-	}, [isLastElement]);
+	// useEffect(() => {
+	// 	if (isLastElement && !isLoading) {
+	// 		setPage((prevPage) => prevPage + 1);
+	// 	}
+	// }, [isLastElement]);
+
+	const {images, isLoading} = useFetchImages();
 
 	return (
 		<div className="gallery-container">
