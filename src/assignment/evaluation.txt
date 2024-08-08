@@ -20,3 +20,10 @@ The absence of the IntersectionObserver for managing visibility and loading of c
 React Code Practices: We observed instances where idiomatic React code conventions were not followed, including the breaking of three specific React rules. Adhering to React's recommended practices is crucial for maintaining code quality and readability.
 
 CSS Styling Approach: Placing all CSS styles in a single file can make the styling difficult to manage as the application grows. Consider modularizing your CSS by component or utilizing CSS-in-JS solutions for better scalability and maintainability.
+
+Mediaquery to change on screen change?
+Test naming convensions
+ApiGetImages capital naming the file
+FavoritesComponent naming file
+LoaderComponent naming file
+Api key hide?
