@@ -23,7 +23,6 @@ CSS Styling Approach: Placing all CSS styles in a single file can make the styli
 
 Mediaquery to change on screen change?
 Test naming convensions
-ApiGetImages capital naming the file
 FavoritesComponent naming file
 LoaderComponent naming file
 Api key hide?

@@ -1,13 +1,28 @@
 import {render, screen} from '@testing-library/react';
 import App from '../App';
 
+// Mock of IntersectionObserver
+beforeAll(() => {
+	class MockIntersectionObserver {
+		observe = jest.fn();
+		disconnect = jest.fn();
+		unobserve = jest.fn();
+		takeRecords = jest.fn();
+		root = null;
+		rootMargin = '';
+		thresholds = [];
+	}
+
+	global.IntersectionObserver = MockIntersectionObserver as any;
+});
+
 describe('App Component', () => {
 	test('renders without crashing', () => {
 		render(<App />);
 	});
 
 	test('renders loader when isLoading is true', () => {
-		const {getByTestId} = render(<App />);
+		render(<App />);
 		const loader = screen.getByTestId('loader-component');
 		expect(loader).toBeInTheDocument();
 	});

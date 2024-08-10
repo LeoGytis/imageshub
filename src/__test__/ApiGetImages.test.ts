@@ -1,5 +1,5 @@
-import ApiGetImages from '../utils/ApiGetImages';
 import fetchMock from 'jest-fetch-mock';
+import apiGetImages from '../utils/ApiGetImages';
 
 xdescribe('ApiGetImages', () => {
 	beforeEach(() => {
@@ -11,7 +11,7 @@ xdescribe('ApiGetImages', () => {
 		const errorMessage = 'API Error';
 		fetchMock.mockRejectOnce(new Error(errorMessage));
 
-		const images = await ApiGetImages(1, 10);
+		const images = await apiGetImages(1, 10);
 
 		expect(fetchMock).toHaveBeenCalledTimes(1);
 		expect(fetchMock).toHaveBeenCalledWith(expect.any(String));
