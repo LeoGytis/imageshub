@@ -1,6 +1,6 @@
 import React from 'react';
 import {ImageProps} from '../utils/types';
-import {FavoriteButton} from './FavoritesButton';
+import {FavoritesButton} from './FavoritesButton';
 
 interface ImageOverlayProps {
 	image: ImageProps;
@@ -14,7 +14,7 @@ const ImageOverlay = ({image, favorites, toggleFavorite}: ImageOverlayProps) => 
 			<div>
 				<h3>{image.title}</h3>
 				<p>{image.ownername}</p>
-				<FavoriteButton isFavorited={favorites[image.id]} onClick={() => toggleFavorite(image.id)} />
+				<FavoritesButton isFavorited={favorites[image.id]} onClick={() => toggleFavorite(image.id)} />
 			</div>
 		</div>
 	);
