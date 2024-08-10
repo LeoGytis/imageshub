@@ -18,10 +18,4 @@ const useFavorites = (): [Record<string, boolean>, (imageId: string) => void] =>
 	return [favorites, toggleFavorite];
 };
 
-const FavoriteButton: React.FC<{isFavorited: boolean; onClick: () => void}> = ({isFavorited, onClick}) => (
-	<button onClick={onClick} className="favorite-button">
-		{isFavorited ? 'Unfavorite' : 'Favorite'}
-	</button>
-);
-
-export {useFavorites, FavoriteButton};
+export default useFavorites;

@@ -3,7 +3,7 @@ import ImageOverlay from './ImageOverlay';
 import FavoriteIcon from './FavoriteIcon';
 import {ImageProps} from '../utils/types';
 import MediaQuery from '../utils/MediaQuery';
-import {useFavorites} from '../hooks/useFavorites';
+import useFavorites from '../hooks/useFavorites';
 
 const ImagesList = ({images}: {images: ImageProps[]}) => {
 	const {isMobile, isTablet, isDesktop} = MediaQuery();

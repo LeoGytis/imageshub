@@ -1,4 +1,4 @@
-import {useFavorites} from '../hooks/useFavorites';
+import useFavorites from '../hooks/useFavorites';
 
 xdescribe('FavoritesComponent', () => {
 	xit('renders without crashing', () => {

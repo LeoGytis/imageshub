@@ -1,6 +1,6 @@
 import React from 'react';
-import {FavoriteButton} from '../hooks/useFavorites';
 import {ImageProps} from '../utils/types';
+import {FavoriteButton} from './FavoritesButton';
 
 interface ImageOverlayProps {
 	image: ImageProps;
