@@ -6,7 +6,7 @@ const FavoritesIcon = ({color = '#ffffff'}: {color?: string}) => {
 		color = '#ffffff';
 	}
 	return (
-		<div className="favorite-heart">
+		<div className="favorites-heart">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				height="20px"

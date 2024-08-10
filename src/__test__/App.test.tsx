@@ -24,7 +24,7 @@ describe('App Component', () => {
 
 	test('renders loader when isLoading is true', () => {
 		render(<App />);
-		const loader = screen.getByTestId('loader-component');
+		const loader = screen.getByTestId('loader-icon');
 		expect(loader).toBeInTheDocument();
 	});
 

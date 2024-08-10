@@ -1,4 +1,4 @@
-.favorite-button {
+.favorites-button {
 	position: absolute;
 	bottom: -80px;
 	left: 50%;
@@ -18,14 +18,14 @@
 	}
 }
 
-.image-container:hover .favorite-button {
+.image-container:hover .favorites-button {
 	opacity: 1;
 	@media (max-width: 1024px) {
 		display: none;
 	}
 }
 
-.favorite-heart {
+.favorites-heart {
 	position: absolute;
 	bottom: 2%;
 	right: 2%;
