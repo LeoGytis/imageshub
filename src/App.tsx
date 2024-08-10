@@ -1,5 +1,5 @@
+import ImagesList from './components/ImagesList';
 import LoaderComponent from './components/LoaderComponent';
-import ImageList from './components/ImageList';
 import useFetchImages from './hooks/useFetchImages';
 import useLastElementOnScreen from './hooks/useLastElementOnScreen';
 import MediaQuery from './utils/MediaQuery';
@@ -16,7 +16,7 @@ function App() {
 
 	return (
 		<div className="gallery-container">
-			<ImageList images={images} />
+			<ImagesList images={images} />
 			<div className="loader-container">{isLoading && <LoaderComponent />}</div>
 		</div>
 	);

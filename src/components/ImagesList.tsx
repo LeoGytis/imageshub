@@ -5,7 +5,7 @@ import {FavoritesComponent} from './FavoritesComponent';
 import {ImageProps} from '../utils/types';
 import MediaQuery from '../utils/MediaQuery';
 
-const ImageList = ({images}: {images: ImageProps[]}) => {
+const ImagesList = ({images}: {images: ImageProps[]}) => {
 	const {isMobile, isTablet, isDesktop} = MediaQuery();
 	const [favorites, toggleFavorite] = FavoritesComponent();
 
@@ -27,4 +27,4 @@ const ImageList = ({images}: {images: ImageProps[]}) => {
 	);
 };
 
-export default ImageList;
+export default ImagesList;
