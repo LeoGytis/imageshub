@@ -1,4 +1,4 @@
-const LoaderComponent = ({ color = "#007782" }) => {
+const LoaderIcon = ({color = '#007782'}) => {
 	return (
 		<div className="loader" data-testid="loader-component">
 			<svg
@@ -29,4 +29,4 @@ const LoaderComponent = ({ color = "#007782" }) => {
 	);
 };
 
-export default LoaderComponent;
+export default LoaderIcon;
