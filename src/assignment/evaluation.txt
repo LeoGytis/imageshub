@@ -22,7 +22,6 @@ React Code Practices: We observed instances where idiomatic React code conventio
 CSS Styling Approach: Placing all CSS styles in a single file can make the styling difficult to manage as the application grows. Consider modularizing your CSS by component or utilizing CSS-in-JS solutions for better scalability and maintainability.
 
 Mediaquery to change on screen change?
-Test naming convensions
 FavoritesComponent naming file
 LoaderComponent naming file
 Api key hide?
