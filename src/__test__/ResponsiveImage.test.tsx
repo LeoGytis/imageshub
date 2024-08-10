@@ -13,20 +13,20 @@ const mockImageProps = {
 
 describe('ResponsiveImage component', () => {
 	it('renders without crashing', () => {
-		const {getByAltText} = render(<ResponsiveImage image={mockImageProps} isMobile={true} isTablet={true} />);
+		render(<ResponsiveImage image={mockImageProps} isMobile={true} isTablet={true} />);
 		const imgElement = screen.getByAltText(mockImageProps.title);
 		expect(imgElement).toBeInTheDocument();
 	});
 
 	it('renders with correct srcSet based on isMobile and isTablet props', () => {
-		const {getByAltText} = render(<ResponsiveImage image={mockImageProps} isMobile={true} isTablet={false} />);
+		render(<ResponsiveImage image={mockImageProps} isMobile={true} isTablet={false} />);
 		const imgElement = screen.getByAltText(mockImageProps.title) as HTMLImageElement;
 		expect(imgElement.getAttribute('srcSet')).toContain('q=low');
 		expect(imgElement.getAttribute('srcSet')).not.toContain('q=medium');
 	});
 
 	it('renders with correct sizes attribute based on isMobile and isTablet props', () => {
-		const {getByAltText} = render(<ResponsiveImage image={mockImageProps} isMobile={false} isTablet={true} />);
+		render(<ResponsiveImage image={mockImageProps} isMobile={false} isTablet={true} />);
 		const imgElement = screen.getByAltText(mockImageProps.title) as HTMLImageElement;
 		expect(imgElement.getAttribute('sizes')).toContain('(max-width: 600px) 100vw');
 		expect(imgElement.getAttribute('sizes')).toContain('(max-width: 1024px) 50vw');
@@ -34,7 +34,7 @@ describe('ResponsiveImage component', () => {
 	});
 
 	it("renders with loading attribute set to 'lazy'", () => {
-		const {getByAltText} = render(<ResponsiveImage image={mockImageProps} isMobile={true} isTablet={true} />);
+		render(<ResponsiveImage image={mockImageProps} isMobile={true} isTablet={true} />);
 		const imgElement = screen.getByAltText(mockImageProps.title) as HTMLImageElement;
 		expect(imgElement.getAttribute('loading')).toBe('lazy');
 	});

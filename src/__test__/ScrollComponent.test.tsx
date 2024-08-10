@@ -9,7 +9,7 @@ Object.defineProperty(window, 'scrollY', {value: 0});
 describe('ScrollListener', () => {
 	it('should call setPage when scrolled to bottom', () => {
 		const setPage = jest.fn();
-		const {container} = render(<ScrollListener isLoading={false} setPage={setPage} />);
+		render(<ScrollListener isLoading={false} setPage={setPage} />);
 
 		fireEvent.scroll(window, {target: {scrollY: 500}});
 
@@ -18,7 +18,7 @@ describe('ScrollListener', () => {
 
 	it('should not call setPage when isLoading is true', () => {
 		const setPage = jest.fn();
-		const {container} = render(<ScrollListener isLoading={true} setPage={setPage} />);
+		render(<ScrollListener isLoading={true} setPage={setPage} />);
 
 		fireEvent.scroll(window, {target: {scrollY: 500}});
 
@@ -27,7 +27,7 @@ describe('ScrollListener', () => {
 
 	it('should not call setPage if not scrolled to bottom', () => {
 		const setPage = jest.fn();
-		const {container} = render(<ScrollListener isLoading={false} setPage={setPage} />);
+		render(<ScrollListener isLoading={false} setPage={setPage} />);
 
 		fireEvent.scroll(window, {target: {scrollY: 0}});
 
