@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-const FavoritesComponent = (): [Record<string, boolean>, (imageId: string) => void] => {
+const useFavorites = (): [Record<string, boolean>, (imageId: string) => void] => {
 	const initialFavorites: Record<string, boolean> = JSON.parse(localStorage.getItem('favorites') || '{}');
 	const [favorites, setFavorites] = useState<Record<string, boolean>>(initialFavorites);
 
@@ -24,4 +24,4 @@ const FavoriteButton: React.FC<{isFavorited: boolean; onClick: () => void}> = ({
 	</button>
 );
 
-export {FavoritesComponent, FavoriteButton};
+export {useFavorites, FavoriteButton};

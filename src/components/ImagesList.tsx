@@ -1,13 +1,13 @@
 import ResponsiveImage from './ResponsiveImage';
 import ImageOverlay from './ImageOverlay';
 import FavoriteIcon from './FavoriteIcon';
-import {FavoritesComponent} from './FavoritesComponent';
 import {ImageProps} from '../utils/types';
 import MediaQuery from '../utils/MediaQuery';
+import {useFavorites} from '../hooks/useFavorites';
 
 const ImagesList = ({images}: {images: ImageProps[]}) => {
 	const {isMobile, isTablet, isDesktop} = MediaQuery();
-	const [favorites, toggleFavorite] = FavoritesComponent();
+	const [favorites, toggleFavorite] = useFavorites();
 
 	return (
 		<>
