@@ -1,6 +1,6 @@
 import ResponsiveImage from './ResponsiveImage';
 import ImageOverlay from './ImageOverlay';
-import FavoriteIcon from './FavoriteIcon';
+import FavoritesIcon from './FavoritesIcon';
 import {ImageProps} from '../utils/types';
 import MediaQuery from '../utils/MediaQuery';
 import useFavorites from '../hooks/useFavorites';
@@ -20,7 +20,7 @@ const ImagesList = ({images}: {images: ImageProps[]}) => {
 				>
 					<ResponsiveImage image={image} isMobile={isMobile()} isTablet={isTablet()} />
 					<ImageOverlay image={image} favorites={favorites} toggleFavorite={toggleFavorite} />
-					{favorites[image.id] ? <FavoriteIcon color={'#ffffff'} /> : null}
+					{favorites[image.id] ? <FavoritesIcon color={'#ffffff'} /> : null}
 				</div>
 			))}
 		</>

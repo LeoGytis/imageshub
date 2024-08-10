@@ -1,9 +1,9 @@
-const FavoriteIcon = ({ color = "#ffffff" }: { color?: string }) => {
+const FavoritesIcon = ({color = '#ffffff'}: {color?: string}) => {
 	const isValidColor = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color);
 
 	if (!isValidColor) {
 		console.log(`Invalid color: ${color}. Using default color instead.`);
-		color = "#ffffff";
+		color = '#ffffff';
 	}
 	return (
 		<div className="favorite-heart">
@@ -25,4 +25,4 @@ const FavoriteIcon = ({ color = "#ffffff" }: { color?: string }) => {
 	);
 };
 
-export default FavoriteIcon;
+export default FavoritesIcon;
